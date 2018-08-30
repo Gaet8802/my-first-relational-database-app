@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Aug 29, 2018 at 04:09 PM
+-- Generation Time: Aug 30, 2018 at 10:54 AM
 -- Server version: 5.6.38
 -- PHP Version: 7.1.12
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Company` (
-  `id` int(11) NOT NULL,
+  `id` int(100) NOT NULL,
   `company_name` varchar(255) NOT NULL,
   `company_address` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
@@ -36,6 +36,18 @@ CREATE TABLE `Company` (
   `company_type` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Company`
+--
+
+INSERT INTO `Company` (`id`, `company_name`, `company_address`, `country`, `VAT_number`, `company_phone`, `company_type`) VALUES
+(5, 'devoss lemmens', 'la-bas', 'dans le trou', '666', '169666666', 4),
+(6, 'amora', 'rue de la mayonnaise', 'loeuf', '444719', '123456789', 5),
+(8, 'uncle bens', 'rue du riz', 'bol', '456321', '0245678392', 6),
+(9, 'Durex', 'rue du latex', 'vagiland', '6969696969', '024568934', 7),
+(10, 'Ikea', 'rue de l\'etagere', 'mobiland', '24325476879', '23402849758346', 8),
+(11, 'Belgacom', 'rue du telephone', 'simland', '13248754332', '02384675322', 9);
+
 -- --------------------------------------------------------
 
 --
@@ -43,9 +55,21 @@ CREATE TABLE `Company` (
 --
 
 CREATE TABLE `Company_Type` (
-  `id` int(11) NOT NULL,
-  `type` varchar(20) NOT NULL
+  `id` int(100) NOT NULL,
+  `type` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Company_Type`
+--
+
+INSERT INTO `Company_Type` (`id`, `type`) VALUES
+(4, 1),
+(5, 0),
+(6, 1),
+(7, 0),
+(8, 1),
+(9, 1);
 
 -- --------------------------------------------------------
 
@@ -54,12 +78,24 @@ CREATE TABLE `Company_Type` (
 --
 
 CREATE TABLE `Customers` (
-  `id` int(11) NOT NULL,
+  `id` int(100) NOT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Customers`
+--
+
+INSERT INTO `Customers` (`id`, `last_name`, `first_name`, `phone_number`, `email`) VALUES
+(5, 'devoss', 'lemmens', '169666666', 'devoslemmens@gmail.com'),
+(6, 'frite', 'paul', '098766532', 'paulfrite@gmail.com'),
+(8, 'bens', 'uncle', '0894536712', 'bensuncle@gmail.com'),
+(9, 'sifredi', 'rocco', '09753428967', 'roccosifredi'),
+(10, 'eric', 'lalampe', '103821937874365', 'lalampeeric@hotmail.com'),
+(11, 'card', 'sim', '1232443208584', 'cardsim@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -68,12 +104,24 @@ CREATE TABLE `Customers` (
 --
 
 CREATE TABLE `Invoices` (
-  `invoice_number` int(11) NOT NULL,
-  `id_company` int(11) NOT NULL,
-  `id_customer` int(11) NOT NULL,
+  `invoice_number` int(100) NOT NULL,
+  `id_company` int(100) NOT NULL,
+  `id_customer` int(100) NOT NULL,
   `invoice_date` date NOT NULL,
   `designation` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Invoices`
+--
+
+INSERT INTO `Invoices` (`invoice_number`, `id_company`, `id_customer`, `invoice_date`, `designation`) VALUES
+(1, 5, 5, '2018-08-30', 'fellation'),
+(2, 6, 6, '2018-08-30', 'un pot de mayonnaise'),
+(3, 8, 8, '2018-08-30', '10 kg de riz'),
+(4, 9, 9, '2018-08-30', 'gel plaisir'),
+(5, 10, 10, '2018-08-30', 'un lit'),
+(6, 11, 11, '2018-08-30', 'nokia 3310');
 
 --
 -- Indexes for dumped tables
@@ -85,7 +133,7 @@ CREATE TABLE `Invoices` (
 ALTER TABLE `Company`
   ADD PRIMARY KEY (`id`),
   ADD KEY `company_name` (`company_name`),
-  ADD KEY `fk_company_compagnyType` (`company_type`);
+  ADD KEY `fk_company_companyType` (`company_type`) USING BTREE;
 
 --
 -- Indexes for table `Company_Type`
@@ -116,25 +164,25 @@ ALTER TABLE `Invoices`
 -- AUTO_INCREMENT for table `Company`
 --
 ALTER TABLE `Company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `Company_Type`
 --
 ALTER TABLE `Company_Type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `Customers`
 --
 ALTER TABLE `Customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `Invoices`
 --
 ALTER TABLE `Invoices`
-  MODIFY `invoice_number` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `invoice_number` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
