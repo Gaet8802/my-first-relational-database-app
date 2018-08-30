@@ -1,9 +1,3 @@
-<?php
-
-
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +9,7 @@
 <h1>PHP Login Session</h1>
 <div id="login">
 <h2>Login Form</h2>
-<form action="accueil.php" method="post">
+<form action="login.php" method="post">
 <label>UserName :</label>
 <input id="name" name="username" placeholder="Username" type="text">
 <label>Password :</label>
