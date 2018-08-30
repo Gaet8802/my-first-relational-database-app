@@ -12,11 +12,10 @@
 	<form action="accueil.php" method="post">
 	<div>
         <input type="checkbox" id="fournisseurs" name="type"
-               value="fournisseurs" />
+               value="fournisseurs" checked />
         <label for="fournisseurs">Fournisseur</label>
     </div>
-
-    <div>
+	<div>
         <input type="checkbox" id="client" name="type"
                value="client" />
         <label for="client">Client</label>
