@@ -9,7 +9,7 @@
 <h1>PHP Login Session</h1>
 <div id="login">
 <h2>Login Form</h2>
-<form action="" method="post">
+<form action="accueil.php" method="post">
 <label>UserName :</label>
 <input id="name" name="username" placeholder="username" type="text">
 <label>Password :</label>

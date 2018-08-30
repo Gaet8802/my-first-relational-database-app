@@ -13,7 +13,7 @@
     <a href="">Retour à l'accueil</a>
 
 <div class="field">
-<form action="accueil.php">
+<form action="accueil.php" method="post">
   <label class="label">Nom Prénom</label>
   <div class="control">
     <input class="input" type="text" placeholder="Votre nom ici">

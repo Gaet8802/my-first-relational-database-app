@@ -10,7 +10,7 @@
 	<h1>Ajout d'une facture</h1>
     <a href="">Retour à l'accueil</a>
     <h3>Création d'une facture</h3>
-	<form action="" method="post">
+	<form action="accueil.php" method="post">
 		<div>
 			<label for="Numéro">Numéro de la facture</label>
 			<input type="text" name="name" value="">

@@ -9,7 +9,18 @@
 	<a href="log-in-form.php">Déconnexion</a>
 	<h1>Ajout d'une société</h1>
     <a href="accueil.php">Retour à l'accueil</a>
-	<form action="" method="post">
+	<form action="accueil.php" method="post">
+	<div>
+        <input type="checkbox" id="fournisseurs" name="type"
+               value="fournisseurs" />
+        <label for="fournisseurs">Fournisseur</label>
+    </div>
+
+    <div>
+        <input type="checkbox" id="client" name="type"
+               value="client" />
+        <label for="client">Client</label>
+    </div>
 		<div>
 			<label for="Name">Désignation sociale</label>
 			<input type="text" name="name" value="">
