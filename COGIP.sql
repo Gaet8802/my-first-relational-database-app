@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Aug 30, 2018 at 10:54 AM
+-- Generation Time: Aug 31, 2018 at 10:31 AM
 -- Server version: 5.6.38
 -- PHP Version: 7.1.12
 
@@ -41,12 +41,12 @@ CREATE TABLE `Company` (
 --
 
 INSERT INTO `Company` (`id`, `company_name`, `company_address`, `country`, `VAT_number`, `company_phone`, `company_type`) VALUES
-(5, 'devoss lemmens', 'la-bas', 'dans le trou', '666', '169666666', 4),
-(6, 'amora', 'rue de la mayonnaise', 'loeuf', '444719', '123456789', 5),
-(8, 'uncle bens', 'rue du riz', 'bol', '456321', '0245678392', 6),
-(9, 'Durex', 'rue du latex', 'vagiland', '6969696969', '024568934', 7),
-(10, 'Ikea', 'rue de l\'etagere', 'mobiland', '24325476879', '23402849758346', 8),
-(11, 'Belgacom', 'rue du telephone', 'simland', '13248754332', '02384675322', 9);
+(5, 'devos lemmens', 'la-bas', 'dans le trou', '888', '169666666', 0),
+(6, 'amora', 'rue de la mayonnaise', 'loeuf', '444719', '123456789', 1),
+(8, 'uncle bens', 'rue du riz', 'bol', '456321', '0245678392', 1),
+(9, 'Durex', 'rue du latex', 'vagiland', '6969696969', '024568934', 0),
+(10, 'Ikea', 'rue de l\'etagere', 'mobiland', '24325476879', '23402849758346', 1),
+(11, 'Belgacom', 'rue du telephone', 'simland', '13248754332', '02384675322', 1);
 
 -- --------------------------------------------------------
 
@@ -56,20 +56,16 @@ INSERT INTO `Company` (`id`, `company_name`, `company_address`, `country`, `VAT_
 
 CREATE TABLE `Company_Type` (
   `id` int(100) NOT NULL,
-  `type` int(1) NOT NULL
+  `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `Company_Type`
 --
 
-INSERT INTO `Company_Type` (`id`, `type`) VALUES
-(4, 1),
-(5, 0),
-(6, 1),
-(7, 0),
-(8, 1),
-(9, 1);
+INSERT INTO `Company_Type` (`id`, `type_name`) VALUES
+(0, 'Supplier'),
+(1, 'Customer');
 
 -- --------------------------------------------------------
 
@@ -133,7 +129,7 @@ INSERT INTO `Invoices` (`invoice_number`, `id_company`, `id_customer`, `invoice_
 ALTER TABLE `Company`
   ADD PRIMARY KEY (`id`),
   ADD KEY `company_name` (`company_name`),
-  ADD KEY `fk_company_companyType` (`company_type`) USING BTREE;
+  ADD KEY `fk_company_compagnyType` (`company_type`);
 
 --
 -- Indexes for table `Company_Type`
@@ -170,7 +166,7 @@ ALTER TABLE `Company`
 -- AUTO_INCREMENT for table `Company_Type`
 --
 ALTER TABLE `Company_Type`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `Customers`
