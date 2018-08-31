@@ -15,34 +15,38 @@ function showCustomers($value='')
 
   echo "
     <tr>
-     <th>Last name</th>
-     <th>First name</th>
-     <th>Phone number</th>
-     <th>Email</th>
-     <th>Actions</th>
+     <th>Company name</th>
+     <th>Company address</th>
+     <th>Country</th>
+     <th>VAT number</th>
+     <th>Company phone</th>
+		 <th>Company type</th>
     </tr>
   ";
 
-  $reponse = $bdd->prepare('SELECT * FROM customers');
+  $reponse = $bdd->prepare('SELECT * FROM company');
   $reponse ->execute();
 
   foreach($reponse as $donnees)
   {
     echo "
       <tr>
-        <td>" .$donnees['last_name'] . "</td>
-        <td>" . $donnees['first_name'] . "</td>
-        <td>" . $donnees['phone_number'] . "</td>
-        <td>" . $donnees['email'] . "</td>
+        <td>" . $donnees['company_name'] . "</td>
+        <td>" . $donnees['company_address'] . "</td>
+        <td>" . $donnees['country'] . "</td>
+        <td>" . $donnees['VAT_number'] . "</td>
+				<td>" . $donnees['company_phone'] . "</td>
+				<td>" . $donnees['company_type'] . "</td>
         <td>
           <form class='' action='' method='post'>
-            <button type='button' name='button'>Show</button>
+            <button type='button' values=".$donnees['id']." name='show'>Show</button>
           </form>
           <form class='' action='' method='post'>
-            <button type='button' name='button'>Edit</button>
+            <button type='button' values=".$donnees['id']." name='edit'>Edit</button>
           </form>
           <form class='' action='' method='post'>
-            <button type='button' name='button'>Delete</button>
+            <button type='button' values=".$donnees['id']." name='delete'>Delete</button>
+						<input type='hidden' name='hiddenPage' value='customers.php'>
           </form>
         </td>
       </tr>
