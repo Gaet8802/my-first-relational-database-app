@@ -11,12 +11,12 @@
     <a href="accueil.php">Retour à l'accueil</a>
 	<form action="accueil.php" method="post">
 	<div>
-        <input type="checkbox" id="fournisseurs" name="type"
+        <input type="radio" id="fournisseurs" name="type"
                value="fournisseurs" checked />
         <label for="fournisseurs">Fournisseur</label>
     </div>
 	<div>
-        <input type="checkbox" id="client" name="type"
+        <input type="radio" id="client" name="type"
                value="client" />
         <label for="client">Client</label>
     </div>
