@@ -10,7 +10,7 @@ catch(Exception $e)
 
 $lesdonnees = $_POST["delete"];
 
-  $req = $bdd->prepare("DELETE FROM ? WHERE id = '".$lesdonnees."' ");
+  $req = $bdd->prepare("DELETE FROM company WHERE id = '".$lesdonnees."' ");
   $req ->execute();
 	header("Location:".$_POST['hiddenPage']."");
 ?>

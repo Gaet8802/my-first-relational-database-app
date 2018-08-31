@@ -39,13 +39,18 @@ function showCustomers($value='')
 				<td>" . $donnees['company_type'] . "</td>
         <td>
           <form class='' action='' method='post'>
-            <button type='button' values=".$donnees['id']." name='show'>Show</button>
+						<input type='submit' name='submitShow' value='Show'>
+						<input type='hidden' name='show' value='".$donnees['id']."'>
+						<input type='hidden' name='hiddenPage' value='customers.php'>
+					</form>
+          <form class='' action='update-customers.php' method='post'>
+						<input type='submit' name='submitEdit' value='Edit'>
+						<input type='hidden' name='edit' value='".$donnees['id']."'>
+						<input type='hidden' name='hiddenPage' value='customers.php'>
           </form>
           <form class='' action='' method='post'>
-            <button type='button' values=".$donnees['id']." name='edit'>Edit</button>
-          </form>
-          <form class='' action='' method='post'>
-            <button type='button' values=".$donnees['id']." name='delete'>Delete</button>
+						<input type='submit' name='submitDelete' value='Delete'>
+						<input type='hidden' name='delete' value='".$donnees['id']."'>
 						<input type='hidden' name='hiddenPage' value='customers.php'>
           </form>
         </td>
@@ -68,8 +73,8 @@ function showCustomers($value='')
     <a href="#">Index</a>
     <a href="#">Suppliers</a>
     <a href="#">Customers</a>
-    <form class="" action="" method="post">
-      <button type="button" name="button">Add customers</button>
+    <form class="" action="annuaire.php" method="post">
+			<input type="submit" name="" value="Add customers">
     </form>
     <table>
 	  	<?php showCustomers(); ?>
