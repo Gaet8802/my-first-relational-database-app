@@ -50,7 +50,7 @@ function showCustomers($value='')
 						<input type='hidden' name='edit' value='".$donnees['id']."'>
 						<input type='hidden' name='hiddenPage' value='customers.php'>
           </form>
-          <form class='' action='' method='post'>
+          <form class='' action='delete-customers.php' method='post'>
 						<input type='submit' name='submitDelete' value='Delete'>
 						<input type='hidden' name='delete' value='".$donnees['id']."'>
 						<input type='hidden' name='hiddenPage' value='customers.php'>

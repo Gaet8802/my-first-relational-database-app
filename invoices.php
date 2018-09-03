@@ -20,7 +20,8 @@ function showInvoices($value='')
     </tr>
   ";
 
-  $reponse = $bdd->prepare('SELECT * FROM invoices');
+  $reponse = $bdd->prepare('SELECT Invoices.invoice_number,Invoices.id_company,Invoices.customer_name,Invoices.invoice_date,Invoices.designation
+FROM invoices');
   $reponse ->execute();
 
   foreach($reponse as $donnees)

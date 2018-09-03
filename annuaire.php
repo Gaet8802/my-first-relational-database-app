@@ -44,7 +44,7 @@ function showPeople($value='')
             <input type='hidden' name='edit' value='".$donnees['Customer_number']."'>
             <input type='hidden' name='hiddenPage' value='annuaire.php'>
           </form>
-          <form class='' action='' method='post'>
+          <form class='' action='delete-annuaire.php' method='post'>
 						<input type='submit' name='submitDelete' value='Delete'>
 						<input type='hidden' name='delete' value='".$donnees['Customer_number']."'>
 						<input type='hidden' name='hiddenPage' value='annuaire.php'>
