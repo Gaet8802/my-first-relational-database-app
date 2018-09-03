@@ -11,7 +11,7 @@ SELECT Company.company_name, Company.company_address, company_phone, Company.com
 FROM Company, Company_Type
 WHERE Company.company_type = Company_Type.id AND Company_Type.type_name = 'Customer';
 -- Show all Invoices:
-SELECT *
+SELECT Invoices.invoice_number, Invoices.id_company, Invoices.customer_name, Invoices.invoice_date, Invoices.designation
 FROM Invoices
 -- les add:
 -- Add company
@@ -57,3 +57,16 @@ SET
 UPDATE `Invoices`
 SET
 `id_company` = '5', `customer_name` = ‘nomCustomer’, `invoice_date` = ‘laDate’, `designation` = ‘laPrestation’ WHERE`Invoices`.`invoice_number` = leNumerod’invoice;
+-- route company details
+select Company.company_name, Company.company_address, Company.company_phone, Company.VAT_number, Invoices.invoice_number, Invoices.customer_name, Invoices.invoice_date, Invoices.designation
+from Company, Invoices
+where Company.id =
+;
+-- route involves details
+SELECT Invoices.invoice_number, Invoices.invoice_date, Company.company_name, Company.company_type, Invoices.customer_name
+FROM Invoices, Company
+WHERE Invoices.invoice_number = numeroInvoice AND Company.id = Invoices.id_company;
+-- route contact-details
+select Customers.last_name, Customers.first_name, Customers.phone_number, Customers.email, Customers.company, Company.company_address, Invoices.invoice_number, Invoices.invoice_date, Invoices.designation
+from Customers, Company, Invoices
+where Customers.last_name = 'Marlair' AND Invoices.id_company = Company.id AND Customers.company = Company.company_nam
