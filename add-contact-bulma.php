@@ -1,3 +1,39 @@
+<?php
+
+try
+{
+	$bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
+}
+catch(Exception $e)
+{
+  die('Erreur : '.$e->getMessage());
+}
+
+function addAnnuaire($value='')
+{
+	global $bdd;
+
+	$company = $_POST["company"];
+	$last_name = $_POST["last_name"];
+	$first_name = $_POST["first_name"];
+	$phone_number = $_POST["phone_number"];
+	$email = $_POST["email"];
+
+	if ($company != "" AND $last_name != "" AND $first_name != "" AND $phone_number !="" AND $email !="") {
+		$sql = $bdd->prepare('INSERT INTO customers(company, last_name, first_name, phone_number, email) VALUES(:company, :last_name, :first_name, :phone_number, :email)');
+		$sql->execute(array(
+			'company' => $company,
+			'last_name' => $last_name,
+			'first_name' => $first_name,
+			'phone_number' => $phone_number,
+			'email' => $email
+		));
+		echo " <p> La facture a été ajoutée avec succès. </p>";
+	}
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,57 +44,32 @@
   <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 </head>
 <body>
-<a href="">Déconnexion</a>
+	<a href="">Déconnexion</a>
 	<h1>Ajout d'un contact</h1>
-    <a href="">Retour à l'accueil</a>
-
-<div class="field">
-<form action="accueil.php">
-  <label class="label">Nom Prénom</label>
-  <div class="control">
-    <input class="input" type="text" placeholder="Votre nom ici">
-  </div>
-</div>
-<div class="field">
-  <label class="label">Société</label>
-  <div class="control">
-    <div class="select">
-      <select>
-        <option>a </option>
-        <option>b </option>
-      </select>
-    </div>
-  </div>
-</div>
-<div class="field">
-  <label class="label">Email</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input is-danger" type="email" placeholder="@Email input">
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-exclamation-triangle"></i>
-    </span>
-  </div>
-  <p class="help is-danger">This email is invalid</p>
-</div>
-<div class="field">
-  <div class="control">
-    <label class="checkbox">
-      <input type="checkbox">
-      I agree to the <a href="#">terms and conditions</a>
-    </label>
-  </div>
-</div>
-<div class="field is-grouped">
-  <div class="control">
-    <button class="button is-link">Submit</button>
-  </div>
-  <div class="control">
-    <button class="button is-text">Cancel</button>
-  </div>
-  </form>
-</div>
-
+	<a href="">Retour à l'accueil</a>
+	<form action="" method="post">
+	  <div class="">
+	    <label for="company">Company name</label>
+			<input type="text" name="company" value="">
+	  </div>
+		<div>
+			<label for="last_name">Last name</label>
+			<input type="text" name="last_name" value="">
+		</div>
+		<div>
+			<label for="first_name">First name</label>
+			<input type="text" name="first_name" value="">
+		</div>
+		<div>
+			<label for="phone_number">Phone number</label>
+			<input type="duration" name="phone_number" value="">
+		</div>
+		<div>
+			<label for="email">Email</label>
+			<input type="text" name="email" value="">
+		</div>
+		<button type="submit" name="button">Envoyer</button>
+	</form>
+	<?php if (isset($_POST["button"])) addAnnuaire(); ?>
 </body>
+</html>
