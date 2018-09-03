@@ -1,7 +1,11 @@
 <?php
-  try
-  {
-    $db = new PDO('mysql:host=localhost;dbname=COGIP;charset=utf8', 'root', 'root'); 
+
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "COGIP";
+  try {
+    $db = new PDO('mysql:host=localhost;dbname=COGIP;charset=utf8', $username, $password); 
     $request = $db->query("SELECT Company.company_name,Company.company_address,company_phone,Company.company_type
                             FROM Company,Company_Type
                             WHERE Company.company_type = Company_Type.id AND Company_Type.type_name = 'supplier';");
