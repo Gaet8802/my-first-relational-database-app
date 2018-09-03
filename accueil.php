@@ -38,12 +38,15 @@ while ($donnees= $resultat->fetch()){
                    '</td>
                     <td>'.$donnees['email'].
                    '</td>
+                   <td>
+
                 </tr>
          </table>';
 }
-$resultat = $bdd->query('SELECT * FROM company ORDER BY id DESC LIMIT 5');
+$resultat = $bdd->query('SELECT * FROM company INNER JOIN');
 
-while ($donnees= $resultat->fetch()){
+
+foreach($resultat as $donnees){
     $id=$donnees['id'];
     echo '<table>
             <tr>
@@ -60,7 +63,7 @@ while ($donnees= $resultat->fetch()){
                     '</td>
                     <td>'.$donnees['company_phone'].
                     '</td>
-                    <td>'.$donnees['company_type'].
+                    <td>'.$donnees['type_name'].
                    '</td>
                 </tr>
          </table>';

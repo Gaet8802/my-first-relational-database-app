@@ -14,9 +14,14 @@
 
 <div class="field">
 <form action="accueil.php" method="post">
-  <label class="label">Nom Prénom</label>
+  <label class="label">Nom</label>
   <div class="control">
     <input class="input" type="text" placeholder="Votre nom ici">
+  </div>
+  <div class="field">
+    <label class="label">Prénom</label>
+    <div class="control">
+    <input class="input" type="text" placeholder="Votre prénom ici">
   </div>
 </div>
 <div class="field">

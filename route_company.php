@@ -12,5 +12,16 @@ catch(Exception $e)
 $resultat = $bdd->query('SELECT * FROM company WHERE id="'.$_GET['id'].'"');
 
 foreach($resultat as $donnees){
-    echo $donnees['company_name'];
+	echo '<table>
+			<tr>
+				<td>'.$donnees['company_name'].'</td>
+				<td>'.$donnees['company_address'].'</td>
+				<td>'.$donnees['company_phone'].'</td>
+				<td>'.$donnees['VAT_number'].'</td>
+			</tr>
+		 </table>';
+
 }
+
+
+?>
