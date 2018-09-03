@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 03, 2018 at 10:49 AM
+-- Generation Time: Sep 03, 2018 at 03:46 PM
 -- Server version: 5.6.38
 -- PHP Version: 7.1.12
 
@@ -46,7 +46,8 @@ INSERT INTO `Company` (`id`, `company_name`, `company_address`, `country`, `VAT_
 (8, 'uncle bens', 'rue du riz', 'bol', '456321', '0245678392', 1),
 (9, 'Durex', 'rue du latex', 'vagiland', '6969696969', '024568934', 0),
 (10, 'Ikea', 'rue de l\'etagere', 'mobiland', '24325476879', '23402849758346', 1),
-(11, 'Belgacom', 'rue du telephone', 'simland', '13248754332', '02384675322', 1);
+(11, 'Belgacom', 'rue du telephone', 'simland', '13248754332', '02384675322', 1),
+(17, 'Becode', 'Gare centrale', 'Belgium', '21435445', '1434354509976', 1);
 
 -- --------------------------------------------------------
 
@@ -87,12 +88,13 @@ CREATE TABLE `Customers` (
 --
 
 INSERT INTO `Customers` (`Customer_number`, `company`, `last_name`, `first_name`, `phone_number`, `email`) VALUES
-(1, 'devos lemmens', 'devoss', 'lemmens', '169666666', 'devoslemmens@gmail.com'),
-(2, 'amora', 'frite', 'paul', '098766532', 'paulfrite@gmail.com'),
+(1, 'amora', 'Jean', 'Lou', '3545357', 'machin@gmail.com'),
+(2, 'amora', 'mexicanos', 'Antoine', '0486627990', 'mexicanos@gmail.com'),
 (3, 'uncle bens', 'bens', 'uncle', '0894536712', 'bensuncle@gmail.com'),
 (4, 'Durex', 'sifredi', 'rocco', '09753428967', 'roccosifredi'),
 (5, 'Ikea', 'eric', 'lalampe', '103821937874365', 'lalampeeric@hotmail.com'),
-(6, 'Belgacom', 'card', 'sim', '1232443208584', 'cardsim@hotmail.com');
+(6, 'Belgacom', 'card', 'sim', '1232443208584', 'cardsim@hotmail.com'),
+(15, 'Becode', 'Marlair', 'Bertrand', '124325667', 'bertrand@becode.org');
 
 -- --------------------------------------------------------
 
@@ -107,6 +109,14 @@ CREATE TABLE `Invoices` (
   `invoice_date` date NOT NULL,
   `designation` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Invoices`
+--
+
+INSERT INTO `Invoices` (`invoice_number`, `id_company`, `customer_name`, `invoice_date`, `designation`) VALUES
+(19, 17, 'Marlair', '2018-09-02', 'peut un porte'),
+(20, 6, 'mexicanos', '2018-09-01', 'Sel');
 
 --
 -- Indexes for dumped tables
@@ -139,8 +149,8 @@ ALTER TABLE `Customers`
 --
 ALTER TABLE `Invoices`
   ADD PRIMARY KEY (`invoice_number`),
-  ADD KEY `fk_invoices_company` (`id_company`),
-  ADD KEY `customer_name` (`customer_name`);
+  ADD KEY `customer_name` (`customer_name`),
+  ADD KEY `fk_invoices_company` (`id_company`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -150,7 +160,7 @@ ALTER TABLE `Invoices`
 -- AUTO_INCREMENT for table `Company`
 --
 ALTER TABLE `Company`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `Company_Type`
@@ -162,13 +172,13 @@ ALTER TABLE `Company_Type`
 -- AUTO_INCREMENT for table `Customers`
 --
 ALTER TABLE `Customers`
-  MODIFY `Customer_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `Customer_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `Invoices`
 --
 ALTER TABLE `Invoices`
-  MODIFY `invoice_number` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `invoice_number` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
@@ -184,14 +194,14 @@ ALTER TABLE `Company`
 -- Constraints for table `Customers`
 --
 ALTER TABLE `Customers`
-  ADD CONSTRAINT `fk_customers_company` FOREIGN KEY (`company`) REFERENCES `Company` (`company_name`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_customers_company` FOREIGN KEY (`company`) REFERENCES `Company` (`company_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `Invoices`
 --
 ALTER TABLE `Invoices`
-  ADD CONSTRAINT `fk_invoices_company` FOREIGN KEY (`id_company`) REFERENCES `Company` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_invoices_customer_name` FOREIGN KEY (`customer_name`) REFERENCES `Customers` (`last_name`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_invoices_company` FOREIGN KEY (`id_company`) REFERENCES `Company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_invoices_customer_name` FOREIGN KEY (`customer_name`) REFERENCES `Customers` (`last_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
