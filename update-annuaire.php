@@ -10,7 +10,7 @@ catch(Exception $e)
 
 $id = $_POST["edit"];
 
-$rep = $bdd->prepare("SELECT * FROM customers WHERE id='$id'");
+$rep = $bdd->prepare("SELECT * FROM customers WHERE Customer_number='$id'");
 $rep->execute();
 
 $donnees = $rep->fetch();
@@ -26,7 +26,7 @@ function updateAnnuaire($value='')
 
 	if ($last_name != "" AND $first_name != "" AND $phone_number != ""AND $email != "") {
 
-		$sql = $bdd->prepare("UPDATE company SET last_name='$last_name', first_name='$first_name', phone_number='$phone_number', email='$email' WHERE id='$id'");
+		$sql = $bdd->prepare("UPDATE company SET last_name='$last_name', first_name='$first_name', phone_number='$phone_number', email='$email' WHERE Customer_number='$id'");
 		$sql->execute();
     header("Location:".$_POST['hiddenPage']."");
 	}

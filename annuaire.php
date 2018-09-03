@@ -36,17 +36,17 @@ function showPeople($value='')
         <td>
           <form class='' action='' method='post'>
             <input type='submit' name='submitShow' value='Show'>
-            <input type='hidden' name='show' value='".$donnees['id']."'>
+            <input type='hidden' name='show' value='".$donnees['Customer_number']."'>
             <input type='hidden' name='hiddenPage' value='annuaire.php'>
           </form>
           <form class='' action='update-annuaire.php' method='post'>
             <input type='submit' name='submitEdit' value='Edit'>
-            <input type='hidden' name='edit' value='".$donnees['id']."'>
+            <input type='hidden' name='edit' value='".$donnees['Customer_number']."'>
             <input type='hidden' name='hiddenPage' value='annuaire.php'>
           </form>
           <form class='' action='' method='post'>
 						<input type='submit' name='submitDelete' value='Delete'>
-						<input type='hidden' name='delete' value='".$donnees['id']."'>
+						<input type='hidden' name='delete' value='".$donnees['Customer_number']."'>
 						<input type='hidden' name='hiddenPage' value='annuaire.php'>
           </form>
         </td>

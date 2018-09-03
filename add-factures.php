@@ -18,11 +18,11 @@ function addFactures($value='')
 	$designation = $_POST["designation"];
 
 	if ($invoice_date != NULL AND $id_company != "Choose" AND $objet != "") {
-		$sql = $bdd->prepare('INSERT INTO invoices(invoice_date, id_company, designation) VALUES(:$invoice_date, :id_company, :designation)');
+		$sql = $bdd->prepare('INSERT INTO invoices(invoice_date, id_company, designation) VALUES(:invoice_date, :id_company, :designation)');
 		$sql->execute(array(
 			'invoice_date' => $invoice_date,
 			'id_company' => $id_company,
-			'designation' => $designation,
+			'designation' => $designation
 		));
 		echo " <p> La facture a été ajoutée avec succès. </p>";
 	}

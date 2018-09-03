@@ -1,3 +1,39 @@
+<?php
+
+try
+{
+	$bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
+}
+catch(Exception $e)
+{
+  die('Erreur : '.$e->getMessage());
+}
+
+function addFactures($value='')
+{
+	global $bdd;
+
+	$company_name = $_POST["company_name"];
+	$company_address = $_POST["company_address"];
+	$country = $_POST["country"];
+	$VAT_number = $_POST["VAT_number"];
+	$company_phone = $_POST["company_phone"];
+
+	if ($company_name != "" AND $company_address != "" AND $country != "" AND $VAT_number !="" AND $company_phone !="") {
+		$sql = $bdd->prepare('INSERT INTO company(company_name, company_address, country, VAT_number, company_phone) VALUES(:company_name, :company_address, :country, :VAT_number, :company_phone)');
+		$sql->execute(array(
+			'company_name' => $company_name,
+			'company_address' => $company_address,
+			'country' => $country,
+			'VAT_number' => $VAT_number,
+			'company_phone' => $company_phone
+		));
+		echo " <p> La facture a été ajoutée avec succès. </p>";
+	}
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
