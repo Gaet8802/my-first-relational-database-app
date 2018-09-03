@@ -9,23 +9,7 @@ catch(Exception $e)
 	// En cas d'erreur, on affiche un message et on arrête tout
         die('Erreur : '.$e->getMessage());
 }
-<td>
-<form class='' action='' method='post'>
-<input type='submit' name='submitShow' value='Show'>
-<input type='hidden' name='show' value='".$donnees['id']."'>
-<input type='hidden' name='hiddenPage' value='customers.php'>
-</form>
-<form class='' action='update-customers.php' method='post'>
-<input type='submit' name='submitEdit' value='Edit'>
-<input type='hidden' name='edit' value='".$donnees['id']."'>
-<input type='hidden' name='hiddenPage' value='customers.php'>
-</form>
-<form class='' action='' method='post'>
-<input type='submit' name='submitDelete' value='Delete'>
-<input type='hidden' name='delete' value='".$donnees['id']."'>
-<input type='hidden' name='hiddenPage' value='customers.php'>
-</form>
-</td>
+
 $resultat = $bdd->query('SELECT * FROM invoices ORDER BY invoice_date ASC LIMIT 5');
 
 while ($donnees= $resultat->fetch()){
@@ -69,7 +53,7 @@ foreach($resultat as $donnees){
     echo '<table>
             <tr>
                 <td>
-                    <a href="route_company.php?>'.$donnees['company_name'].'</a>
+                    <a href="route_company.php?">'.$donnees['company_name'].'</a>
                 </td>
                 <td>'
                     .$donnees['company_address'].
