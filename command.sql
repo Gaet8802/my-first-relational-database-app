@@ -44,3 +44,16 @@ DELETE FROM `Customers` WHERE `Customers`.`Customer_number` = customer num
 
 DELETE FROM `Company` WHERE `Company`.`id` = company number
 
+-- les update
+
+-- update company
+
+UPDATE `Company` SET `company_name` = ’nameOfTheCompany’, `company_address` = ‘address’’ `country` = ‘pays’, `VAT_number` =’numDeTva’, `company_phone` = ‘numDeTel’, `company_type` = '0 ou 1’ WHERE `Company`.`id` = l’id;
+-- update customer
+UPDATE `Customers`
+SET
+`company` = ‘nameOfCompany’, `last_name` = ‘nom’, `first_name` = ‘prenom’, `phone_number` = ‘numeroDeTel’, `email`= ‘addresseMail’ WHERE `Customers`.`Customer_number` = leCustomer_number;
+-- update invoice
+UPDATE `Invoices`
+SET
+`id_company` = '5', `customer_name` = ‘nomCustomer’, `invoice_date` = ‘laDate’, `designation` = ‘laPrestation’ WHERE`Invoices`.`invoice_number` = leNumerod’invoice;
