@@ -10,7 +10,7 @@ catch(Exception $e)
 
 $lesdonnees = $_POST["delete"];
 
-  $req = $bdd->prepare("DELETE FROM invoices WHERE id = '".$lesdonnees."' ");
-  $req ->execute();
-	header("Location:".$_POST['hiddenPage']."");
+  $req = $bdd->prepare("DELETE FROM invoices WHERE `Invoices`.`invoice_number` = '$lesdonnees'");
+	echo "sdljqgkhsqdhgsqdkljgsdg";
+	// header("Location:".$_POST['hiddenPage']."");
 ?>

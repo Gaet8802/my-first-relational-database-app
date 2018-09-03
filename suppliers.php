@@ -24,7 +24,10 @@ function showSuppliers($value='')
     </tr>
   ";
 
-  $reponse = $bdd->prepare('SELECT * FROM company');
+
+  $reponse = $bdd->prepare("SELECT Company.id, Company.company_name, Company.company_address, Company.country, Company.VAT_number, Company.company_phone, Company.company_type
+	FROM Company, Company_Type
+	WHERE Company.company_type = Company_Type.id AND Company_Type.type_name = 'supplier';");
   $reponse ->execute();
 
   foreach($reponse as $donnees)

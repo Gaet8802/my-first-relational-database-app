@@ -40,7 +40,7 @@ function showInvoices($value='')
             <input type='hidden' name='edit' value='".$donnees['invoice_number']."'>
             <input type='hidden' name='hiddenPage' value='invoices.php'>
           </form>
-          <form class='' action='' method='post'>
+          <form class='' action='delete-invoices.php' method='post'>
             <input type='submit' name='submitDelete' value='Delete'>
             <input type='hidden' name='delete' value='".$donnees['invoice_number']."'>
             <input type='hidden' name='hiddenPage' value='invoices.php'>
