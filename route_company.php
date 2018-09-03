@@ -17,11 +17,11 @@ foreach($resultat as $donnees){
 				<td>'.$donnees['company_name'].'</td>
 				<td>'.$donnees['company_address'].'</td>
 				<td>'.$donnees['company_phone'].'</td>
-				<td>'.$donnees['VAT_number'].'</td>
-			</tr>
-		 </table>';
+				<td>'.$donnees['VAT_number'].'</td>';
 
 }
+
+
 
 
 ?>
