@@ -2,12 +2,18 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Ajout d'un contact</title>
+	<title>route_company-details</title>
   <link rel="stylesheet" media="screen" title="no title" charset="utf-8">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 <?php
+include 'header.php';
+?>
+<?php
+
+
 try
 {
 	// On se connecte à MySQL
@@ -22,7 +28,7 @@ $id = $_POST['show'];
 
 $reponse = $bdd ->prepare ("select Company.company_name, Company.company_address, Company.company_phone, Company.VAT_number, Invoices.invoice_number, Invoices.customer_name, Invoices.invoice_date, Invoices.designation
 from Company, Invoices
-where Company.id ='.$id.'");
+where Company.id = Invoices.id_company and company.id ='$id'");
 $reponse ->execute();
 
 foreach($reponse as $donnees){
@@ -50,12 +56,4 @@ foreach($reponse as $donnees){
 				</tr>
 				</table>';}
 				?>
-				<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Ajout d'un contact</title>
-  <link rel="stylesheet" media="screen" title="no title" charset="utf-8">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-</head>
+				

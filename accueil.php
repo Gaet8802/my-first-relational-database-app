@@ -2,46 +2,13 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Ajout d'un contact</title>
+	<title>Accueil</title>
   <link rel="stylesheet" media="screen" title="no title" charset="utf-8">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar" role="navigation" aria-label="main navigation">
-    <nav class="navbar is-primary">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
-                <img src="" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
-            </a>
-
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-        <div class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item">
-                    Home
-                </a>
-            </div>
-
-            <div class="navbar-end">
-                <a class="navbar-item">
-                    end
-                </a>
-            </div>
-        </div>
-    </nav>
-</nav>
-<section class="section">
-    <div class="container">
-      <h1 class="title">Section</h1>
-      <h2 class="subtitle">
-
-
 
 <?php
 try
@@ -58,38 +25,54 @@ catch(Exception $e)
 $resultat = $bdd->query('SELECT * FROM invoices ORDER BY invoice_date ASC LIMIT 5');
 
 while ($donnees= $resultat->fetch()){
-    echo '<table>
-                <tr>
-                    <td>'.$donnees['id_company'].
-                   '</td>
-                    <td>'.$donnees['id_customer'].
-                   '</td>
-                    <td>'.$donnees['invoice_date'].
-                   '</td>
-                    <td>'.$donnees['designation'].
-                   '</td>
-                </tr>
-         </table></h2>';
-}
+    echo
+    '<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>'.$donnees['id_company'].'</td>
+                <td>'.$donnees['customer_name'].'</td>
+                <td>'.$donnees['invoice_date'].'</td>
+                <td>'.$donnees['designation'].'</td>
+            </tr>
+        </tbody>
+    </table>'
+    ;}
+?>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Numéro de téléphone</th>
+            <th scope="col">E-mail</th>
+        </tr>
+    </thead>
+<?php        
+
 $resultat = $bdd->query('SELECT * FROM customers ORDER BY Customer_number DESC LIMIT 5');
 
 while ($donnees= $resultat->fetch()){
-    echo '<h2>
-            <table>
-                <tr>
-                    <td>'.$donnees['last_name'].
-                   '</td>
-                    <td>'.$donnees['first_name'].
-                   '</td>
-                    <td>'.$donnees['phone_number'].
-                   '</td>
-                    <td>'.$donnees['email'].
-                   '</td>
-                   <td>
-                </tr>
-            </table>
-         </h2>';
-}
+    echo 
+    '<tbody>
+        <tr>
+            <td>'.$donnees['last_name'].'</td>
+            <td>'.$donnees['first_name'].'</td>
+            <td>'.$donnees['phone_number'].'</td>
+            <td>'.$donnees['email'].'</td>
+        </tr>
+    </tbody>'
+;}
+?>
+</table>
+<?php
 
 $resultat = $bdd->prepare('select Company.id,Company.company_name,Company.company_address,Company.country,Company.VAT_number,Company.company_phone,Company_Type.type_name
 from Company,Company_Type where Company.company_type = company_Type.id limit 5');
@@ -138,8 +121,5 @@ foreach($resultat as $donnees){
 }
 ?>
 
-
-    </div>
-  </section>
 </body>
 
