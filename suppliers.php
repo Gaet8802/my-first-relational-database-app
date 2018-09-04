@@ -46,7 +46,7 @@ function showSuppliers($value='')
 						<input type='hidden' name='show' value='".$donnees['id']."'>
 						<input type='hidden' name='hiddenPage' value='suppliers.php'>
 					</form>
-          <form class='' action='update-customers.php' method='post'>
+          <form class='' action='update-suppliers.php?id=". $donnees['id']."' method='post'>
 						<input type='submit' name='submitEdit' value='Edit'>
 						<input type='hidden' name='edit' value='".$donnees['id']."'>
 						<input type='hidden' name='hiddenPage' value='suppliers.php'>
@@ -68,16 +68,18 @@ function showSuppliers($value='')
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Customers</title>
+    <title>Suppliers</title>
   </head>
   <body>
-    <h1>Your Customers</h1>
-    <h3>Customers</h3>
+		<a href="log-in-form.php">Déconnexion</a>
+	  <a href="accueil.php">Retour à l'accueil</a>
+    <h1>Your suppliers</h1>
+    <h3>Suppliers</h3>
     <a href="#">Index</a>
     <a href="#">Suppliers</a>
     <a href="#">Customers</a>
-    <form class="" action="annuaire.php" method="post">
-			<input type="submit" name="" value="Add customers">
+    <form class="" action="add-company.php" method="post">
+			<input type="submit" name="" value="Add company">
     </form>
     <table>
 	  	<?php showSuppliers(); ?>

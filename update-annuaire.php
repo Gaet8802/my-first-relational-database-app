@@ -8,12 +8,26 @@ catch(Exception $e)
   die('Erreur : '.$e->getMessage());
 }
 
-$id = $_POST["edit"];
+$id = $_GET["id"];
 
 $rep = $bdd->prepare("SELECT * FROM customers WHERE Customer_number='$id'");
 $rep->execute();
 
 $donnees = $rep->fetch();
+
+function optionCompany($value='')
+{
+	global $bdd;
+	$reponse = $bdd->prepare('SELECT * FROM company');
+	$reponse ->execute();
+
+	foreach($reponse as $donnees)
+	{
+		echo "
+			<option value='". $donnees['company_name'] ."'>". $donnees['company_name'] ."</option>
+		";
+	}
+}
 
 function updateAnnuaire($value='')
 {
@@ -25,12 +39,15 @@ function updateAnnuaire($value='')
 	$phone_number = $_POST["phone_number"];
 	$email = $_POST["email"];
 
-	if ($company != "" AND $last_name != "" AND $first_name != "" AND $phone_number != ""AND $email != "") {
-    $sql = $bdd->prepare("UPDATE `Customers` SET `company` ='amora', `last_name` = 'michelle', `first_name` ='Lou', `phone_number` ='3545357', `email`= 'machin@gmail.com' WHERE `Customers.Customer_number` = '$id' ");
-		// $sql = $bdd->prepare("UPDATE `Customers` SET `company` ='$company', `last_name` = '$last_name', `first_name` ='$first_name', `phone_number` ='$phone_number', `email`= '$email' WHERE `Customers.Customer_number` ='".$id."' ");
-		$sql->execute();
+	if ($company != "Choose" AND $last_name != "" AND $first_name != "" AND $phone_number != ""AND $email != "") {
+		$sql = $bdd->prepare("UPDATE Customers SET last_name = 'Paul', first_name = 'michel', phone_number = '35453575', email = 'machin@gmail.org' WHERE Customers.Customer_number = 1;");
+      echo $company;
+      var_dump($_POST);
+    $sql->execute();
     // header("Location:annuaire.php");
-	}
+	} else {
+    echo "Champs incomplets";
+  }
 }
 
 ?>
@@ -42,13 +59,17 @@ function updateAnnuaire($value='')
 	<title>Modifier l'annuaire</title>
 </head>
 <body>
-	<a href="accueil.php">Retour à l'accueil.</a>
+  <a href="log-in-form.php">Déconnexion</a>
+  <a href="accueil.php">Retour à l'accueil</a>
 	<h1>Modifier</h1>
 	<form action="" method="post">
-    <div class="">
-      <label for="company">Company name</label>
-			<input type="text" name="company" value="<?php echo $donnees['company']; ?>">
-    </div>
+    <div>
+			<label for='company'>Société</label>
+			<select name='company'>
+				<option value='Choose'>Choose</option>
+				<?php optionCompany(); ?>
+			</select>
+		</div>
 		<div>
 			<label for="last_name">Last name</label>
 			<input type="text" name="last_name" value="<?php echo $donnees['last_name']; ?>">

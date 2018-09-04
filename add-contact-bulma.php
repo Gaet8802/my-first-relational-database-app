@@ -9,27 +9,45 @@ catch(Exception $e)
   die('Erreur : '.$e->getMessage());
 }
 
+function optionCompany($value='')
+{
+	global $bdd;
+	$reponse = $bdd->prepare('SELECT * FROM company');
+	$reponse ->execute();
+
+	foreach($reponse as $donnees)
+	{
+		echo "
+			<option value='". $donnees['company_name'] ."'>". $donnees['company_name'] ."</option>
+		";
+	}
+}
+
 function addAnnuaire($value='')
 {
 	global $bdd;
 
+	$Customer_number = NULL;
 	$company = $_POST["company"];
 	$last_name = $_POST["last_name"];
 	$first_name = $_POST["first_name"];
 	$phone_number = $_POST["phone_number"];
 	$email = $_POST["email"];
 
-	if ($company != "" AND $last_name != "" AND $first_name != "" AND $phone_number !="" AND $email !="") {
-		$sql = $bdd->prepare('INSERT INTO customers(company, last_name, first_name, phone_number, email) VALUES(:company, :last_name, :first_name, :phone_number, :email)');
+	if ($company != "Choose" AND $last_name != "" AND $first_name != "" AND $phone_number !="" AND $email !="") {
+		$sql = $bdd->prepare('INSERT INTO customers(Customer_number, company, last_name, first_name, phone_number, email) VALUES(:Customer_number, :company, :last_name, :first_name, :phone_number, :email)');
 		$sql->execute(array(
+			'Customer_number' => $Customer_number,
 			'company' => $company,
 			'last_name' => $last_name,
 			'first_name' => $first_name,
 			'phone_number' => $phone_number,
 			'email' => $email
 		));
-		echo " <p> La facture a été ajoutée avec succès. </p>";
-	}
+		header("Location:annuaire.php");
+	}else {
+    echo "Champs incomplets";
+  }
 }
 
 ?>
@@ -44,14 +62,17 @@ function addAnnuaire($value='')
   <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 </head>
 <body>
-	<a href="">Déconnexion</a>
+	<a href="log-in-form.php">Déconnexion</a>
 	<h1>Ajout d'un contact</h1>
-	<a href="">Retour à l'accueil</a>
+	<a href="accueil.php">Retour à l'accueil</a>
 	<form action="" method="post">
-	  <div class="">
-	    <label for="company">Company name</label>
-			<input type="text" name="company" value="">
-	  </div>
+		<div>
+			<label for='company'>Société</label>
+			<select name='company'>
+				<option value='Choose'>Choose</option>
+				<?php optionCompany(); ?>
+			</select>
+		</div>
 		<div>
 			<label for="last_name">Last name</label>
 			<input type="text" name="last_name" value="">

@@ -9,23 +9,57 @@ catch(Exception $e)
   die('Erreur : '.$e->getMessage());
 }
 
+function optionCompany($value='')
+{
+	global $bdd;
+	$reponse = $bdd->prepare('SELECT * FROM company');
+	$reponse ->execute();
+
+	foreach($reponse as $donnees)
+	{
+		echo "
+			<option value='". $donnees['id'] ."'>". $donnees['company_name'] ."</option>
+		";
+	}
+}
+
+function optionCustomer($value='')
+{
+	global $bdd;
+	$reponse = $bdd->prepare('SELECT * FROM customers');
+	$reponse ->execute();
+
+	foreach($reponse as $donnees)
+	{
+		echo "
+			<option value='". $donnees['last_name'] ."'>". $donnees['last_name'] ."</option>
+		";
+	}
+}
+
 function addFactures($value='')
 {
 	global $bdd;
 
-	$invoice_date = $_POST["invoice_date"];
+	$invoice_number = NULL;
 	$id_company = $_POST["id_company"];
+	$customer_name = $_POST["customer_name"];
+	$invoice_date = $_POST["invoice_date"];
 	$designation = $_POST["designation"];
 
-	if ($invoice_date != NULL AND $id_company != "Choose" AND $objet != "") {
-		$sql = $bdd->prepare('INSERT INTO invoices(invoice_date, id_company, designation) VALUES(:invoice_date, :id_company, :designation)');
+	if ($invoice_date != NULL AND $customer_name != "Choose" AND $id_company != "Choose" AND $designation != "") {
+		$sql = $bdd->prepare('INSERT INTO invoices(invoice_number, id_company, customer_name, invoice_date, designation) VALUES(:invoice_number, :id_company, :customer_name, :invoice_date, :designation)');
 		$sql->execute(array(
-			'invoice_date' => $invoice_date,
+			'invoice_number' => $invoice_number,
 			'id_company' => $id_company,
+			'customer_name' => $customer_name,
+			'invoice_date' => $invoice_date,
 			'designation' => $designation
 		));
-		echo " <p> La facture a été ajoutée avec succès. </p>";
-	}
+		header("Location:invoices.php");
+	}else {
+    echo "Champs incomplets";
+  }
 }
 
 ?>
@@ -38,25 +72,28 @@ function addFactures($value='')
 	<link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
-	<a href="">Déconnexion</a>
+	<a href="log-in-form.php">Déconnexion</a>
 	<h1>Ajout d'une facture</h1>
-    <a href="">Retour à l'accueil</a>
+    <a href="accueil.php">Retour à l'accueil</a>
     <h3>Création d'une facture</h3>
 	<form action="" method="post">
-    <div>
+		<div>
+			<label for='id_company'>Société</label>
+			<select name='id_company'>
+				<option value='Choose'>Choose</option>
+				<?php optionCompany(); ?>
+			</select>
+		</div>
+		<div>
+			<label for='customer_name'>Nom du client</label>
+			<select name='customer_name'>
+				<option value='Choose'>Choose</option>
+				<?php optionCustomer(); ?>
+			</select>
+		</div>
+		<div>
 			<label for="invoice_date">Date de la facture</label>
 			<input type="date" name="invoice_date">
-		</div>
-        <div>
-			<label for="id_company">Société</label>
-			<select name="id_company">
-				<option value="Choose">Choose</option>
-				<option value="a">a </option>
-				<option value="b">b </option>
-				<option value="c">c </option>
-				<option value="d">d </option>
-				<option value="e">e </option>
-			</select>
 		</div>
 	    <div>
 			<label for="designation">Objet de la facture</label>

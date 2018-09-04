@@ -15,6 +15,7 @@ function showPeople($value='')
 
   echo "
     <tr>
+		<th>Company</th>
      <th>Last name</th>
      <th>First name</th>
      <th>Phone number</th>
@@ -29,6 +30,7 @@ function showPeople($value='')
   {
     echo "
       <tr>
+				<td>" . $donnees['company'] . "</td>
         <td>" . $donnees['last_name'] . "</td>
         <td>" . $donnees['first_name'] . "</td>
         <td>" . $donnees['phone_number'] . "</td>
@@ -39,7 +41,7 @@ function showPeople($value='')
             <input type='hidden' name='show' value='".$donnees['Customer_number']."'>
             <input type='hidden' name='hiddenPage' value='annuaire.php'>
           </form>
-          <form class='' action='update-annuaire.php' method='post'>
+          <form class='' action='update-annuaire.php?id=". $donnees['Customer_number']."' method='post'>
             <input type='submit' name='submitEdit' value='Edit'>
             <input type='hidden' name='edit' value='".$donnees['Customer_number']."'>
             <input type='hidden' name='hiddenPage' value='annuaire.php'>
@@ -64,13 +66,15 @@ function showPeople($value='')
     <title>Annuaire</title>
   </head>
   <body>
+		<a href="log-in-form.php">Déconnexion</a>
+	  <a href="accueil.php">Retour à l'accueil</a>
     <h1>Annuaire</h1>
     <h3>Clients</h3>
     <a href="#">Accueil</a>
     <a href="#">Fournisseurs</a>
     <a href="#">Clients</a>
-    <form class="" action="" method="post">
-      <button type="button" name="button">Ajouter un client</button>
+    <form class="" action="add-contact-bulma.php" method="post">
+      <input type="submit" name="submit" value="Ajouter un client">
     </form>
     <table>
 	  	<?php showPeople(); ?>

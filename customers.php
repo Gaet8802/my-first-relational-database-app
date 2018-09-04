@@ -45,7 +45,7 @@ function showCustomers($value='')
 						<input type='hidden' name='show' value='".$donnees['id']."'>
 						<input type='hidden' name='hiddenPage' value='customers.php'>
 					</form>
-          <form class='' action='update-customers.php' method='post'>
+          <form class='' action='update-customers.php?id=". $donnees['id']."' method='post'>
 						<input type='submit' name='submitEdit' value='Edit'>
 						<input type='hidden' name='edit' value='".$donnees['id']."'>
 						<input type='hidden' name='hiddenPage' value='customers.php'>
@@ -67,16 +67,18 @@ function showCustomers($value='')
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Customers</title>
+    <title>Société</title>
   </head>
   <body>
-    <h1>Your Customers</h1>
-    <h3>Customers</h3>
+		<a href="log-in-form.php">Déconnexion</a>
+	  <a href="accueil.php">Retour à l'accueil</a>
+    <h1>Company</h1>
+    <h3>Company</h3>
     <a href="#">Index</a>
     <a href="#">Suppliers</a>
     <a href="#">Customers</a>
-    <form class="" action="annuaire.php" method="post">
-			<input type="submit" name="" value="Add customers">
+    <form class="" action="add-company.php" method="post">
+			<input type="submit" name="" value="Add Company">
     </form>
     <table>
 	  	<?php showCustomers(); ?>

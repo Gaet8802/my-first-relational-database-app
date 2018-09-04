@@ -18,6 +18,10 @@ if ($_SESSION['typeUser'] == 1) {
     <title></title>
   </head>
   <body>
+    <a href="invoices.php">INVOICES</a>
+    <a href="suppliers.php">SUPPLIERS</a>
+    <a href="customers.php">COMPANY</a>
+    <a href="annuaire.php">ANNUAIRE</a>
     <a href="logout.php">Déconnection</a>
   </body>
 </html>

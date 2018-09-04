@@ -8,7 +8,7 @@ catch(Exception $e)
   die('Erreur : '.$e->getMessage());
 }
 
-$id = $_POST["edit"];
+$id = $_GET["id"];
 
 $rep = $bdd->prepare("SELECT * FROM company WHERE id='$id'");
 $rep->execute();
@@ -29,8 +29,10 @@ function updateCustomers($value='')
 
 		$sql = $bdd->prepare("UPDATE company SET company_name='$company_name', company_address='$company_address', country='$country', VAT_number='$VAT_number', company_phone='$company_phone' WHERE id='$id'");
 		$sql->execute();
-    header("Location:".$_POST['hiddenPage']."");
-	}
+    header("Location:suppliers.php");
+	}else {
+    echo "Champs incomplets";
+  }
 }
 
 ?>
@@ -42,8 +44,8 @@ function updateCustomers($value='')
 	<title>Modifier une société</title>
 </head>
 <body>
-	<a href="accueil.php">Retour à l'accueil.</a>
-	<h1>Modifier</h1>
+  <a href="log-in-form.php">Déconnexion</a>
+  <a href="accueil.php">Retour à l'accueil</a>	<h1>Modifier</h1>
 	<form action="" method="post">
 		<div>
 			<label for="company_name">Company name</label>
