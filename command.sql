@@ -60,7 +60,7 @@ SET
 -- route company details
 select Company.company_name, Company.company_address, Company.company_phone, Company.VAT_number, Invoices.invoice_number, Invoices.customer_name, Invoices.invoice_date, Invoices.designation
 from Company, Invoices
-where Company.id =
+where Company.id = Invoices.id_company AND Company.id = 17
 ;
 -- route involves details
 SELECT Invoices.invoice_number, Invoices.invoice_date, Company.company_name, Company.company_type, Invoices.customer_name
