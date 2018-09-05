@@ -2,9 +2,9 @@
 
 
 ### Qui a fait le projet ?  
-[Geoffrey Poelmans](https://github.com/geoffrey-poelmans)
-[Gaetano Mico Latorre](https://github.com/Gaet8802)
-[Guillaume Bare](https://github.com/Bare-Guillaume)
+[Geoffrey Poelmans](https://github.com/geoffrey-poelmans)  
+[Gaetano Mico Latorre](https://github.com/Gaet8802)  
+[Guillaume Bare](https://github.com/Bare-Guillaume)  
 
 ### Qu’est-ce que c’est ?  
 [Application comptable de la COGIP](https://github.com/becodeorg/lovelace-2/tree/master/Projects/COGIPapp)
