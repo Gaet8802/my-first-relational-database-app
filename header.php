@@ -26,10 +26,11 @@
             </div>
                 <div class="row">
                     <div class="col-sm">
-                        <button type="button" class="btn btn-dark">Accueil</button>
-                        <button type="button" class="btn btn-dark">Fournisseurs</button>
-                        <button type="button" class="btn btn-dark">Clients</button>
-                        <button type="button" class="btn btn-dark">Factures</button>
+                        <button onclick="location.href='accueil.php'" type="button" class="btn btn-dark">Accueil</button>
+                        <button onclick="location.href='suppliers.php'" type="button" class="btn btn-dark">Fournisseurs</button>
+                        <button onclick="location.href='customers.php'" type="button" class="btn btn-dark">Clients</button>
+                        <button onclick="location.href='invoices.php'" type="button" class="btn btn-dark">Factures</button>
+                        <button onclick="location.href='annuaire.php'" type="button" class="btn btn-dark">Contact</button>
                     </div>
                 </div>
             </div>
