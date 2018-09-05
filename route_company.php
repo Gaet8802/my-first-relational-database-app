@@ -24,36 +24,36 @@ catch(Exception $e)
 	// En cas d'erreur, on affiche un message et on arrête tout
         die('Erreur : '.$e->getMessage());
 }
+
 $id = $_POST['show'];
+echo $id;
 
-$reponse = $bdd ->prepare ("select Company.company_name, Company.company_address, Company.company_phone, Company.VAT_number, Invoices.invoice_number, Invoices.customer_name, Invoices.invoice_date, Invoices.designation
-from Company, Invoices
-where Company.id = Invoices.id_company and company.id ='$id'");
-$reponse ->execute();
-
-foreach($reponse as $donnees){
-    
-    echo '<table>
-            <tr>
-                <td>'.$donnees['company_name'].'
-                </td>
-                <td>'
-                    .$donnees['company_address'].
-                '</td>
-                <td>'.$donnees['company_phone'].
-				'</td>
-				<td>'.$donnees['VAT_number'].
-				'</td>
-				<td>'.$donnees['invoice_number'].
-				'</td>
-				<td>'.$donnees['customer_name'].
-				'</td>
-				<td>'.$donnees['invoice_date'].
-				'</td>
-				<td>'.$donnees['designation'].
-				'</td>
-				<td>
-				</tr>
-				</table>';}
+$result = $bdd ->prepare("SELECT Company.company_name, Company.company_address, Company.company_phone, Company.VAT_number, Invoices.invoice_number, Invoices.customer_name, Invoices.invoice_date, Invoices.designation
+FROM Company, Invoices
+WHERE Company.id ='.$id.'");
+$result -> execute();
+foreach($result as $donnees){
+	echo '
+<table>
+	<tr>
+		<td>'.$donnees['company_name'].'
+		</td>
+		<td>'
+			.$donnees['company_address'].
+		'</td>
+		<td>'.$donnees['country'].
+		'</td>
+		<td>'.$donnees['company_phone'].
+		'</td>
+		<td>'.$donnees['VAT_number'].
+		'</td>
+		<td>'.$donnees['invoice_number'].
+		'</td>
+		<td>'.$donnees['invoice_date'].
+		'</td>
+		<td>'.$donnees['designation'].
+		'</td>
+	</tr>
+</table>';
+}
 				?>
-				
