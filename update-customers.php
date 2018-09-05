@@ -22,7 +22,7 @@ function updateCustomers($value='')
 	if ($company_name != "" AND $company_address != "" AND $country != ""AND $VAT_number != "" AND $company_phone != "") {
 		$sql = $bdd->prepare("UPDATE company SET company_name='$company_name', company_address='$company_address', country='$country', VAT_number='$VAT_number', company_phone='$company_phone' WHERE id='$id'");
 		$sql->execute();
-    header("Location:customers.php");
+    	header("Location:customers.php");
 	}else {
     echo "Champs incomplets";
   }
