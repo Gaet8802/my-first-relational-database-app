@@ -78,9 +78,12 @@ while ($donnees= $resultat->fetch()){
     <thead>
         <tr>
             <th scope="col">Nom de l'entreprise</th>
-            <th scope="col">Nom du client</th>
-            <th scope="col">Date de la facture</th>
-            <th scope="col">Motifs</th>
+            <th scope="col">Adresse de l'entreprise</th>
+            <th scope="col">Pays</th>
+            <th scope="col">Numéro de TVA</th>
+            <th scope="col">Numéro de téléphone de la compagnie</th>
+            <th scope="col">Type de client</th>
+            <th scope="col">Options</th>
         </tr>
     </thead>
 <?php
