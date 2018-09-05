@@ -22,7 +22,7 @@ Pour accéder au compte MODERATEUR : username = muriel , password = perrache .
 ![Réalisation finale]()
 
 ### Schéma de la BDD?  
-![BDD](bdd.png)
+![BDD](bdd.PNG)
 
 ### La progression ?  
 Projet terminé.
