@@ -2,7 +2,7 @@
 
 try
 {
-  $bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', 'root');
+  $bdd = new PDO('mysql:host=localhost;dbname=id7027355_cogip;charset=utf8', 'id7027355_tanolepro', 'tanolepro');
 }
 catch(Exception $e)
 {

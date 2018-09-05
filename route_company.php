@@ -17,7 +17,7 @@ include 'header.php';
 try
 {
 	// On se connecte à MySQL
-	$bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root','');
+	$bdd = new PDO('mysql:host=localhost;dbname=id7027355_cogip;charset=utf8', 'id7027355_tanolepro','tanolepro');
 }
 catch(Exception $e)
 {
@@ -26,7 +26,7 @@ catch(Exception $e)
 }
 
 $id = $_POST['show'];
-echo $id;
+
 
 $reponse = $bdd ->prepare ("SELECT Company.company_name,Company.company_address,Company.country,Company.company_phone,Company.VAT_number,Invoices.invoice_number,Invoices.invoice_date,Invoices.designation
 from Company,Invoices
@@ -35,9 +35,8 @@ $reponse->bindValue(':id',$id);
 $reponse->execute();
 
 foreach($reponse->fetchAll() as $key => $donnees){
-	//print_r($donnees);
-    
-	echo '<table>
+	echo 
+	'<table>
             <tr>
                 <td>'.$donnees['company_name'].'
                 </td>
@@ -62,7 +61,7 @@ foreach($reponse->fetchAll() as $key => $donnees){
 
 
 $id = $_POST['show'];
-echo $id;
+
 
 $reponse = $bdd ->prepare ("SELECT Company.company_name,Customers.first_name,Customers.last_name,Invoices.invoice_number,Invoices.invoice_date,Invoices.designation
 from Company,Invoices,Customers
