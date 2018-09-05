@@ -28,32 +28,67 @@ catch(Exception $e)
 $id = $_POST['show'];
 echo $id;
 
-$result = $bdd ->prepare("SELECT Company.company_name, Company.company_address, Company.company_phone, Company.VAT_number, Invoices.invoice_number, Invoices.customer_name, Invoices.invoice_date, Invoices.designation
-FROM Company, Invoices
-WHERE Company.id ='.$id.'");
-$result -> execute();
-foreach($result as $donnees){
-	echo '
-<table>
-	<tr>
-		<td>'.$donnees['company_name'].'
-		</td>
-		<td>'
-			.$donnees['company_address'].
-		'</td>
-		<td>'.$donnees['country'].
-		'</td>
-		<td>'.$donnees['company_phone'].
-		'</td>
-		<td>'.$donnees['VAT_number'].
-		'</td>
-		<td>'.$donnees['invoice_number'].
-		'</td>
-		<td>'.$donnees['invoice_date'].
-		'</td>
-		<td>'.$donnees['designation'].
-		'</td>
-	</tr>
-</table>';
-}
-				?>
+$reponse = $bdd ->prepare ("SELECT Company.company_name,Company.company_address,Company.country,Company.company_phone,Company.VAT_number,Invoices.invoice_number,Invoices.invoice_date,Invoices.designation
+from Company,Invoices
+where Company.id = Invoices.id_company and Company.id =:id");
+$reponse->bindValue(':id',$id);
+$reponse->execute();
+
+foreach($reponse->fetchAll() as $key => $donnees){
+	//print_r($donnees);
+    
+	echo '<table>
+            <tr>
+                <td>'.$donnees['company_name'].'
+                </td>
+                <td>'
+					.$donnees['company_address'].
+				'</td>
+				<td>'.$donnees['country'].
+                '</td>
+                <td>'.$donnees['company_phone'].
+				'</td>
+				<td>'.$donnees['VAT_number'].
+				'</td>
+				<td>'.$donnees['invoice_number'].
+				'</td>
+				<td>'.$donnees['invoice_date'].
+				'</td>
+				<td>'.$donnees['designation'].
+				'</td>
+				<td>
+				</tr>
+				</table>';}
+
+
+$id = $_POST['show'];
+echo $id;
+
+$reponse = $bdd ->prepare ("SELECT Company.company_name,Customers.first_name,Customers.last_name,Invoices.invoice_number,Invoices.invoice_date,Invoices.designation
+from Company,Invoices,Customers
+where Company.id = Invoices.id_company and Customers.last_name = Invoices.customer_name and Company.id =:id");
+$reponse->bindValue(':id',$id);
+$reponse->execute();
+
+foreach($reponse->fetchAll() as $key => $donnees){
+	//print_r($donnees);
+    
+	echo '<table>
+            <tr>
+                <td>'.$donnees['company_name'].'
+                </td>
+                <td>'
+					.$donnees['first_name'].
+				'</td>
+				<td>'.$donnees['last_name'].
+                '</td>
+                <td>'.$donnees['invoice_number'].
+				'</td>
+				<td>'.$donnees['invoice_date'].
+				'</td>
+				<td>'.$donnees['designation'].
+				'</td>
+				<td>
+				</tr>
+				</table>';}
+?>
