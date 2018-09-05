@@ -1,3 +1,6 @@
+Pour accéder au compte SUPERADMIN : username = jc , password = ranu .  
+Pour accéder au compte MODERATEUR : username = muriel , password = perrache .
+
 # Page de présentation.
 
 
@@ -30,6 +33,9 @@ Réalisation d'une application de gestion de comptabilité.
 
 ### Comment on l’installe ?  
 [Le projet](https://geoffrey-poelmans.github.io/CopyPages/)
+
+Pour accéder au compte SUPERADMIN : username = jc , password = ranu .  
+Pour accéder au compte MODERATEUR : username = muriel , password = perrache .
 
 ### D’où ça vient ?  
 Exercice en classe.
