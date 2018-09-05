@@ -38,12 +38,12 @@ WHERE id_company = company.id');
     if ($_SESSION['typeUser'] == "superadmin") {
       echo "
             <form class='' action='update-invoices.php?id=". $donnees['invoice_number']."' method='post'>
-              <input type='submit' name='submitEdit' value='Edit'>
+              <input type='submit' class='btn btn-warning m-1 text-white name='submitEdit' value='Edit'>
               <input type='hidden' name='edit' value='".$donnees['invoice_number']."'>
               <input type='hidden' name='hiddenPage' value='invoices.php'>
             </form>
             <form class='' action='delete-invoices.php' method='post'>
-              <input type='submit' name='submitDelete' value='Delete'>
+              <input type='submit' class='btn btn-warning m-1 text-white name='submitDelete' value='Delete'>
               <input type='hidden' name='delete' value='".$donnees['invoice_number']."'>
               <input type='hidden' name='hiddenPage' value='invoices.php'>
             </form>
