@@ -1,3 +1,6 @@
+Pour accéder au compte SUPERADMIN : username = jc , password = ranu .  
+Pour accéder au compte MODERATEUR : username = muriel , password = perrache .
+
 # Page de présentation.
 
 
