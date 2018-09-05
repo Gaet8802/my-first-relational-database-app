@@ -23,31 +23,33 @@ catch(Exception $e)
 }
 
 $resultat = $bdd->query('SELECT * FROM invoices ORDER BY invoice_date ASC LIMIT 5');
+?>
 
+<table class="table table-bordered">
+    <thead class ="thead-dark">
+        <tr>
+            <th scope="col">Nom de l'entreprise</th>
+            <th scope="col">Nom du client</th>
+            <th scope="col">Date de la facture</th>
+            <th scope="col">Motifs</th>
+        </tr>
+    </thead>
+<?php    
 while ($donnees= $resultat->fetch()){
     echo
-    '<table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
+        '<tbody>
             <tr>
                 <td>'.$donnees['id_company'].'</td>
                 <td>'.$donnees['customer_name'].'</td>
                 <td>'.$donnees['invoice_date'].'</td>
                 <td>'.$donnees['designation'].'</td>
             </tr>
-        </tbody>
-    </table>'
+        </tbody>'
     ;}
 ?>
+</table>
 <table class="table table-bordered">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th scope="col">Nom</th>
             <th scope="col">Prénom</th>
@@ -57,7 +59,7 @@ while ($donnees= $resultat->fetch()){
     </thead>
 <?php        
 
-$resultat = $bdd->query('SELECT * FROM customers ORDER BY Customer_number DESC LIMIT 5');
+$resultat = $bdd->query('SELECT * FROM customers ORDER BY Customer_number');
 
 while ($donnees= $resultat->fetch()){
     echo 
@@ -72,54 +74,62 @@ while ($donnees= $resultat->fetch()){
 ;}
 ?>
 </table>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Nom de l'entreprise</th>
+            <th scope="col">Nom du client</th>
+            <th scope="col">Date de la facture</th>
+            <th scope="col">Motifs</th>
+        </tr>
+    </thead>
 <?php
 
 $resultat = $bdd->prepare('select Company.id,Company.company_name,Company.company_address,Company.country,Company.VAT_number,Company.company_phone,Company_Type.type_name
-from Company,Company_Type where Company.company_type = company_Type.id limit 5');
+from Company,Company_Type where Company.company_type = company_Type.id');
 $resultat -> execute();
 
 foreach($resultat as $donnees){
     
-    echo '<h2>
-            <table>
-                <tr>
-                    <td>
-                        '.$donnees['company_name'].'
-                    </td>
-                    <td>'
-                        .$donnees['company_address'].
-                    '</td>
-                    <td>'
-                        .$donnees['country'].
-                    '</td>
-                    <td>'.$donnees['VAT_number'].
-                    '</td>
-                    <td>'.$donnees['company_phone'].
-                    '</td>
-                    <td>'.$donnees['type_name'].
-                   '</td>
-                   <td>
-                   <form class="" action="route_company.php" method="post">
-                                 <input type="submit" name="submitShow" value="Show">
-                                 <input type="hidden" name="show" value="'.$donnees['id'].'">
-                                 <input type="hidden" name="hiddenPage" value="customers.php">
-                             </form>
-                   <form class="" action="update-customers.php" method="post">
-                                 <input type="submit" name="submitEdit" value="Edit">
-                                 <input type="hidden" name="edit" value="'.$donnees['id'].'">
-                                 <input type="hidden" name="hiddenPage" value="customers.php">
-                   </form>
-                   <form class="" action="" method="post">
-                                 <input type="submit" name="submitDelete" value="Delete">
-                                 <input type="hidden" name="delete" value="'.$donnees['id'].'">
-                                 <input type="hidden" name="hiddenPage" value="customers.php">
-                   </form>
-                 </td>
+    echo '<tbody>
+            <tr>
+                <td>
+                    '.$donnees['company_name'].'
+                </td>
+                <td>'
+                    .$donnees['company_address'].
+                '</td>
+                <td>'
+                    .$donnees['country'].
+                '</td>
+                <td>'.$donnees['VAT_number'].
+                '</td>
+                <td>'.$donnees['company_phone'].
+                '</td>
+                <td>'.$donnees['type_name'].
+                '</td>
+                <td>
+                <form class="" action="route_company.php" method="post">
+                                <input type="submit" name="submitShow" value="Show">
+                                <input type="hidden" name="show" value="'.$donnees['id'].'">
+                                <input type="hidden" name="hiddenPage" value="customers.php">
+                </form>
+                <form class="" action="update-customers.php" method="post">
+                                <input type="submit" name="submitEdit" value="Edit">
+                                <input type="hidden" name="edit" value="'.$donnees['id'].'">
+                                <input type="hidden" name="hiddenPage" value="customers.php">
+                </form>
+                <form class="" action="" method="post">
+                                <input type="submit" name="submitDelete" value="Delete">
+                                <input type="hidden" name="delete" value="'.$donnees['id'].'">
+                                <input type="hidden" name="hiddenPage" value="customers.php">
+                </form>
+                </td>
                 </tr>
-            </table>
-         </h2>';
+            </tbody>'
+                    ;
 }
 ?>
-
+</table>
 </body>
 
