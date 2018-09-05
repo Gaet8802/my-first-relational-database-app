@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Sep 03, 2018 at 03:46 PM
--- Server version: 5.6.38
--- PHP Version: 7.1.12
+-- Hôte : 127.0.0.1
+-- Généré le :  mer. 05 sep. 2018 à 15:50
+-- Version du serveur :  10.1.34-MariaDB
+-- Version de PHP :  7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,16 +19,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `COGIP`
+-- Base de données :  `cogip`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Company`
+-- Structure de la table `company`
 --
 
-CREATE TABLE `Company` (
+CREATE TABLE `company` (
   `id` int(100) NOT NULL,
   `company_name` varchar(255) NOT NULL,
   `company_address` varchar(255) NOT NULL,
@@ -37,44 +39,45 @@ CREATE TABLE `Company` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Company`
+-- Déchargement des données de la table `company`
 --
 
-INSERT INTO `Company` (`id`, `company_name`, `company_address`, `country`, `VAT_number`, `company_phone`, `company_type`) VALUES
-(5, 'devos lemmens', 'la-bas', 'dans le trou', '888', '169666666', 0),
-(6, 'amora', 'rue de la mayonnaise', 'loeuf', '444719', '123456789', 1),
-(8, 'uncle bens', 'rue du riz', 'bol', '456321', '0245678392', 1),
+INSERT INTO `company` (`id`, `company_name`, `company_address`, `country`, `VAT_number`, `company_phone`, `company_type`) VALUES
+(5, 'moyen petite company', 'la-bas', 'dans le trou', '888', '169666666', 0),
+(6, 'amora', 'rue de la mayonnaise', 'loeuf', '444719', 'testetstestetsetsetstetsetsettse', 1),
+(8, 'Une société de riz', 'rue du riz', 'bol', '456321', '0245678392', 1),
 (9, 'Durex', 'rue du latex', 'vagiland', '6969696969', '024568934', 0),
 (10, 'Ikea', 'rue de l\'etagere', 'mobiland', '24325476879', '23402849758346', 1),
 (11, 'Belgacom', 'rue du telephone', 'simland', '13248754332', '02384675322', 1),
-(17, 'Becode', 'Gare centrale', 'Belgium', '21435445', '1434354509976', 1);
+(18, 'tamere', 'rue de tamere', 'a tamere', '44533554', '00025545', 0),
+(22, 'sdlkmghsmqldhkg', 'sqmdlkgjsqdlmjkg', 'qsdmlgsqmldkgh', '35575737375', '357357357357', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Company_Type`
+-- Structure de la table `company_type`
 --
 
-CREATE TABLE `Company_Type` (
+CREATE TABLE `company_type` (
   `id` int(100) NOT NULL,
   `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Company_Type`
+-- Déchargement des données de la table `company_type`
 --
 
-INSERT INTO `Company_Type` (`id`, `type_name`) VALUES
+INSERT INTO `company_type` (`id`, `type_name`) VALUES
 (0, 'Supplier'),
 (1, 'Customer');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Customers`
+-- Structure de la table `customers`
 --
 
-CREATE TABLE `Customers` (
+CREATE TABLE `customers` (
   `Customer_number` int(11) NOT NULL,
   `company` varchar(255) NOT NULL,
   `last_name` varchar(255) DEFAULT NULL,
@@ -84,25 +87,22 @@ CREATE TABLE `Customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Customers`
+-- Déchargement des données de la table `customers`
 --
 
-INSERT INTO `Customers` (`Customer_number`, `company`, `last_name`, `first_name`, `phone_number`, `email`) VALUES
-(1, 'amora', 'Jean', 'Lou', '3545357', 'machin@gmail.com'),
+INSERT INTO `customers` (`Customer_number`, `company`, `last_name`, `first_name`, `phone_number`, `email`) VALUES
+(1, 'Une société de riz', 'aaaaaaaaaaa', 'bbbbbbbbbbbbbbbbb', '888888888888888888888', 'machin@gmail.org'),
 (2, 'amora', 'mexicanos', 'Antoine', '0486627990', 'mexicanos@gmail.com'),
-(3, 'uncle bens', 'bens', 'uncle', '0894536712', 'bensuncle@gmail.com'),
-(4, 'Durex', 'sifredi', 'rocco', '09753428967', 'roccosifredi'),
-(5, 'Ikea', 'eric', 'lalampe', '103821937874365', 'lalampeeric@hotmail.com'),
-(6, 'Belgacom', 'card', 'sim', '1232443208584', 'cardsim@hotmail.com'),
-(15, 'Becode', 'Marlair', 'Bertrand', '124325667', 'bertrand@becode.org');
+(3, 'Une société de riz', 'bens', 'uncle', '0894536712', 'bensuncle@gmail.com'),
+(17, 'amora', 'machin', 'truc', '3434', 'truc@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Invoices`
+-- Structure de la table `invoices`
 --
 
-CREATE TABLE `Invoices` (
+CREATE TABLE `invoices` (
   `invoice_number` int(100) NOT NULL,
   `id_company` int(100) NOT NULL,
   `customer_name` varchar(255) NOT NULL,
@@ -111,97 +111,131 @@ CREATE TABLE `Invoices` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Invoices`
+-- Déchargement des données de la table `invoices`
 --
 
-INSERT INTO `Invoices` (`invoice_number`, `id_company`, `customer_name`, `invoice_date`, `designation`) VALUES
-(19, 17, 'Marlair', '2018-09-02', 'peut un porte'),
-(20, 6, 'mexicanos', '2018-09-01', 'Sel');
+INSERT INTO `invoices` (`invoice_number`, `id_company`, `customer_name`, `invoice_date`, `designation`) VALUES
+(20, 10, 'machin', '2018-09-15', 'lololololololololololol'),
+(26, 9, 'mexicanos', '2018-09-14', 'salut ');
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Structure de la table `login`
+--
+
+CREATE TABLE `login` (
+  `id_login` int(11) NOT NULL,
+  `user` varchar(250) NOT NULL,
+  `pwd` varchar(250) NOT NULL,
+  `typeUser` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `login`
+--
+
+INSERT INTO `login` (`id_login`, `user`, `pwd`, `typeUser`) VALUES
+(1, 'muriel', 'f2ff241eac83db641cadb1c8af3b0d8ca9fa7160', 'moderateur'),
+(2, 'jc', '9770d1c99cd356280d7bb78b97bdbe4bf25ff1da', 'superadmin');
+
+--
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `Company`
+-- Index pour la table `company`
 --
-ALTER TABLE `Company`
+ALTER TABLE `company`
   ADD PRIMARY KEY (`id`),
   ADD KEY `company_name` (`company_name`),
   ADD KEY `fk_company_compagnyType` (`company_type`);
 
 --
--- Indexes for table `Company_Type`
+-- Index pour la table `company_type`
 --
-ALTER TABLE `Company_Type`
+ALTER TABLE `company_type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Customers`
+-- Index pour la table `customers`
 --
-ALTER TABLE `Customers`
+ALTER TABLE `customers`
   ADD PRIMARY KEY (`Customer_number`),
   ADD KEY `last_name` (`last_name`),
   ADD KEY `fk_customers_company` (`company`);
 
 --
--- Indexes for table `Invoices`
+-- Index pour la table `invoices`
 --
-ALTER TABLE `Invoices`
+ALTER TABLE `invoices`
   ADD PRIMARY KEY (`invoice_number`),
   ADD KEY `customer_name` (`customer_name`),
   ADD KEY `fk_invoices_company` (`id_company`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Index pour la table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id_login`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `Company`
+-- AUTO_INCREMENT pour la table `company`
 --
-ALTER TABLE `Company`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+ALTER TABLE `company`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `Company_Type`
+-- AUTO_INCREMENT pour la table `company_type`
 --
-ALTER TABLE `Company_Type`
+ALTER TABLE `company_type`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `Customers`
+-- AUTO_INCREMENT pour la table `customers`
 --
-ALTER TABLE `Customers`
-  MODIFY `Customer_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `customers`
+  MODIFY `Customer_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `Invoices`
+-- AUTO_INCREMENT pour la table `invoices`
 --
-ALTER TABLE `Invoices`
-  MODIFY `invoice_number` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+ALTER TABLE `invoices`
+  MODIFY `invoice_number` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT pour la table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `Company`
+-- Contraintes pour la table `company`
 --
-ALTER TABLE `Company`
-  ADD CONSTRAINT `fk_company_compagnyType` FOREIGN KEY (`company_type`) REFERENCES `Company_Type` (`id`);
+ALTER TABLE `company`
+  ADD CONSTRAINT `fk_company_compagnyType` FOREIGN KEY (`company_type`) REFERENCES `company_type` (`id`);
 
 --
--- Constraints for table `Customers`
+-- Contraintes pour la table `customers`
 --
-ALTER TABLE `Customers`
-  ADD CONSTRAINT `fk_customers_company` FOREIGN KEY (`company`) REFERENCES `Company` (`company_name`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `customers`
+  ADD CONSTRAINT `fk_customers_company` FOREIGN KEY (`company`) REFERENCES `company` (`company_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Invoices`
+-- Contraintes pour la table `invoices`
 --
-ALTER TABLE `Invoices`
-  ADD CONSTRAINT `fk_invoices_company` FOREIGN KEY (`id_company`) REFERENCES `Company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_invoices_customer_name` FOREIGN KEY (`customer_name`) REFERENCES `Customers` (`last_name`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `invoices`
+  ADD CONSTRAINT `fk_invoices_company` FOREIGN KEY (`id_company`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_invoices_customer_name` FOREIGN KEY (`customer_name`) REFERENCES `customers` (`last_name`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
