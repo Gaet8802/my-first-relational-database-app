@@ -18,6 +18,10 @@
 ### A quoi ça ressemble ?  
 ![Réalisation finale]()
 
+### Schéma de la BDD?  
+
+![BDD](bdd.png)
+
 ### La progression ?  
 Projet terminé.
 
