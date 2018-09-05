@@ -65,9 +65,7 @@ function addFactures($value='')
 	<link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
-	<a href="logout.php">Déconnexion</a>
-	<h1>Ajout d'une facture</h1>
-    <a href="accueil.php">Retour à l'accueil</a>
+<?php include 'header.php' ?>
     <h3>Création d'une facture</h3>
 	<form action="" method="post">
 		<div>

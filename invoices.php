@@ -59,13 +59,7 @@ WHERE id_company = company.id');
     <title>Factures</title>
   </head>
   <body>
-		<a href="logout.php.php">Déconnexion</a>
-	  <a href="accueil.php">Retour à l'accueil</a>
-    <h1>Factures</h1>
-    <h3>Factures</h3>
-    <a href="#">Accueil</a>
-    <a href="#">Fournisseurs</a>
-    <a href="#">Clients</a>
+		<?php include 'header.php' ?>
     <form class="" action="add-factures.php" method="post">
 			<input type="submit" name="submit" value="Ajouter une facture">
     </form>

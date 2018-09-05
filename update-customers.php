@@ -37,9 +37,7 @@ function updateCustomers($value='')
 	<title>Modifier une société</title>
 </head>
 <body>
-  <a href="logout.php">Déconnexion</a>
-  <a href="accueil.php">Retour à l'accueil</a>
-	<h1>Modifier</h1>
+	<?php include 'header.php' ?>
 	<form action="" method="post">
 		<div>
 			<label for="company_name">Company name</label>

@@ -61,13 +61,7 @@ function showPeople($value='')
     <title>Annuaire</title>
   </head>
   <body>
-		<a href="logout.php">Déconnexion</a>
-	  <a href="accueil.php">Retour à l'accueil</a>
-    <h1>Annuaire</h1>
-    <h3>Clients</h3>
-    <a href="#">Accueil</a>
-    <a href="#">Fournisseurs</a>
-    <a href="#">Clients</a>
+		<?php include 'header.php' ?>
     <form class="" action="add-contact-bulma.php" method="post">
       <input type="submit" name="submit" value="Ajouter un client">
     </form>

@@ -44,9 +44,7 @@ function addCompany($value='')
 		<link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
 	</head>
 	<body>
-		<a href="logout.php">Déconnexion</a>
-		<h1>Ajout d'une société</h1>
-	  <a href="accueil.php">Retour à l'accueil</a>
+		<?php include 'header.php' ?>
 		<form action="" method="post">
 			<div>
 				<label for="company_name">Désignation sociale</label>

@@ -21,7 +21,7 @@
                     <h1>BONJOUR ....!</h1>
                 </div>
                 <div class="col-sm d-flex justify-content-end">
-                    <a href="url">Deconnexion</a>
+                    <a href="logout.php">Deconnexion</a>
                 </div>
             </div>
                 <div class="row">
@@ -38,8 +38,3 @@
     </header>
 </body>
 </html>
-
-
-
-
-    

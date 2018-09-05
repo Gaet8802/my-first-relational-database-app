@@ -62,13 +62,7 @@ function showSuppliers($value='')
     <title>Suppliers</title>
   </head>
   <body>
-		<a href="logout.php">Déconnexion</a>
-	  <a href="accueil.php">Retour à l'accueil</a>
-    <h1>Your suppliers</h1>
-    <h3>Suppliers</h3>
-    <a href="#">Index</a>
-    <a href="#">Suppliers</a>
-    <a href="#">Customers</a>
+    <?php include 'header.php' ?>
     <form class="" action="add-company.php" method="post">
 			<input type="submit" name="" value="Add company">
     </form>

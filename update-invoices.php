@@ -68,8 +68,7 @@ function updateInvoices($value='')
 	<title>Modifier une facture</title>
 </head>
 <body>
-  <a href="logout.php">Déconnexion</a>
-  <a href="accueil.php">Retour à l'accueil</a>
+  <?php include 'header.php' ?>
 	<h1>Modifier</h1>
 	<form action="" method="post">
     <div>

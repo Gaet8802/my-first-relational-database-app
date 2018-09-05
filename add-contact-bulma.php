@@ -55,9 +55,7 @@ function addAnnuaire($value='')
   <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 </head>
 <body>
-	<a href="logout.php">Déconnexion</a>
-	<h1>Ajout d'un contact</h1>
-	<a href="accueil.php">Retour à l'accueil</a>
+	<?php include 'header.php' ?>
 	<form action="" method="post">
 		<div>
 			<label for='company'>Société</label>
