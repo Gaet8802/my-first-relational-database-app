@@ -8,11 +8,11 @@ function showCustomers($value='')
 
   echo "
     <tr>
-     <th>Company name</th>
-     <th>Company address</th>
-     <th>Country</th>
-     <th>VAT number</th>
-     <th>Company phone</th>
+     <th scope='col'>Company name</th>
+     <th scope='col'>Company address</th>
+     <th scope='col'>Country</th>
+     <th scope='col'>VAT number</th>
+     <th scope='col'>Company phone</th>
     </tr>
   ";
 
@@ -32,19 +32,19 @@ function showCustomers($value='')
 				<td>" . $donnees['company_phone'] . "</td>
         <td>
           <form class='' action='' method='post'>
-						<input type='submit' name='submitShow' value='Show'>
-						<input type='hidden' name='show' value='".$donnees['id']."'>
-						<input type='hidden' name='hiddenPage' value='customers.php'>
+						<input type='submit' class='btn btn-warning m-1 text-white' name='submitShow' value='Show'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='show' value='".$donnees['id']."'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='customers.php'>
 					</form>
           <form class='' action='update-customers.php?id=". $donnees['id']."' method='post'>
-						<input type='submit' name='submitEdit' value='Edit'>
-						<input type='hidden' name='edit' value='".$donnees['id']."'>
-						<input type='hidden' name='hiddenPage' value='customers.php'>
+						<input type='submit' class='btn btn-warning m-1 text-white' name='submitEdit' value='Edit'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='edit' value='".$donnees['id']."'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='customers.php'>
           </form>
           <form class='' action='delete-customers.php' method='post'>
-						<input type='submit' name='submitDelete' value='Delete'>
-						<input type='hidden' name='delete' value='".$donnees['id']."'>
-						<input type='hidden' name='hiddenPage' value='customers.php'>
+						<input type='submit' class='btn btn-warning m-1 text-white' name='submitDelete' value='Delete'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='delete' value='".$donnees['id']."'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='customers.php'>
           </form>
         </td>
       </tr>
@@ -66,10 +66,10 @@ function showCustomers($value='')
   </head>
   <body>
 		<?php include 'header.php' ?>
-    <form class="" action="add-company.php" method="post">
-			<input type="submit" name="" value="Add Company">
+    <form class="col-sm" action="add-company.php" method="post">
+			<input type="submit" class="btn btn-success mt-4 mb-1" name="" value="Ajouter un client">
     </form>
-    <table>
+    <table class="table table-bordered">
 	  	<?php showCustomers(); ?>
     </table>
   </body>

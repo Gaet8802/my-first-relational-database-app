@@ -2,19 +2,17 @@
 
 require 'DBconnect.php';
 
-echo $_SESSION["TypeUser"];
-
 function showPeople($value='')
 {
   global $bdd;
 
   echo "
     <tr>
-		<th>Company</th>
-     <th>Last name</th>
-     <th>First name</th>
-     <th>Phone number</th>
-     <th>Email</th>
+		<th scope='col'>Company</th>
+     <th scope='col'>Last name</th>
+     <th scope='col'>First name</th>
+     <th scope='col'>Phone number</th>
+     <th scope='col'>Email</th>
     </tr>
   ";
 
@@ -32,19 +30,19 @@ function showPeople($value='')
         <td>" . $donnees['email'] . "</td>
         <td>
           <form class='' action='' method='post'>
-            <input type='submit' name='submitShow' value='Show'>
-            <input type='hidden' name='show' value='".$donnees['Customer_number']."'>
-            <input type='hidden' name='hiddenPage' value='annuaire.php'>
+            <input type='submit' class='btn btn-warning m-1 text-white' name='submitShow' value='Show'>
+            <input type='hidden' class='btn btn-warning m-1 text-white' name='show' value='".$donnees['Customer_number']."'>
+            <input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='annuaire.php'>
           </form>
           <form class='' action='update-annuaire.php?id=". $donnees['Customer_number']."' method='post'>
-            <input type='submit' name='submitEdit' value='Edit'>
-            <input type='hidden' name='edit' value='".$donnees['Customer_number']."'>
-            <input type='hidden' name='hiddenPage' value='annuaire.php'>
+            <input type='submit' class='btn btn-warning m-1 text-white' name='submitEdit' value='Edit'>
+            <input type='hidden' class='btn btn-warning m-1 text-white' name='edit' value='".$donnees['Customer_number']."'>
+            <input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='annuaire.php'>
           </form>
           <form class='' action='delete-annuaire.php' method='post'>
-						<input type='submit' name='submitDelete' value='Delete'>
-						<input type='hidden' name='delete' value='".$donnees['Customer_number']."'>
-						<input type='hidden' name='hiddenPage' value='annuaire.php'>
+						<input type='submit' class='btn btn-warning m-1 text-white' name='submitDelete' value='Delete'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='delete' value='".$donnees['Customer_number']."'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='annuaire.php'>
           </form>
         </td>
       </tr>
@@ -66,10 +64,10 @@ function showPeople($value='')
   </head>
   <body>
 		<?php include 'header.php' ?>
-    <form class="" action="add-contact-bulma.php" method="post">
-      <input type="submit" name="submit" value="Ajouter un client">
+    <form class="col-sm" action="add-contact-bulma.php" method="post">
+      <input type="submit" class="btn btn-success mt-4 mb-1" name="submit" value="Ajouter un contact">
     </form>
-    <table>
+    <table class="table table-bordered">
 	  	<?php showPeople(); ?>
     </table>
   </body>
