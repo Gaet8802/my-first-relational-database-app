@@ -34,19 +34,23 @@ function showPeople($value='')
             <input type='hidden' name='show' value='".$donnees['Customer_number']."'>
             <input type='hidden' name='hiddenPage' value='annuaire.php'>
           </form>
-          <form class='' action='update-annuaire.php?id=". $donnees['Customer_number']."' method='post'>
-            <input type='submit' name='submitEdit' value='Edit'>
-            <input type='hidden' name='edit' value='".$donnees['Customer_number']."'>
-            <input type='hidden' name='hiddenPage' value='annuaire.php'>
-          </form>
-          <form class='' action='delete-annuaire.php' method='post'>
-						<input type='submit' name='submitDelete' value='Delete'>
-						<input type='hidden' name='delete' value='".$donnees['Customer_number']."'>
-						<input type='hidden' name='hiddenPage' value='annuaire.php'>
-          </form>
-        </td>
-      </tr>
     ";
+    if ($_SESSION['typeUser'] == "superadmin") {
+      echo "
+            <form class='' action='update-annuaire.php?id=". $donnees['Customer_number']."' method='post'>
+              <input type='submit' name='submitEdit' value='Edit'>
+              <input type='hidden' name='edit' value='".$donnees['Customer_number']."'>
+              <input type='hidden' name='hiddenPage' value='annuaire.php'>
+            </form>
+            <form class='' action='delete-annuaire.php' method='post'>
+  						<input type='submit' name='submitDelete' value='Delete'>
+  						<input type='hidden' name='delete' value='".$donnees['Customer_number']."'>
+  						<input type='hidden' name='hiddenPage' value='annuaire.php'>
+            </form>
+          </td>
+        </tr>
+      ";
+    }
   }
 }
 

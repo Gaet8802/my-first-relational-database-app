@@ -37,19 +37,23 @@ function showSuppliers($value='')
 						<input type='hidden' name='show' value='".$donnees['id']."'>
 						<input type='hidden' name='hiddenPage' value='suppliers.php'>
 					</form>
-          <form class='' action='update-suppliers.php?id=". $donnees['id']."' method='post'>
-						<input type='submit' name='submitEdit' value='Edit'>
-						<input type='hidden' name='edit' value='".$donnees['id']."'>
-						<input type='hidden' name='hiddenPage' value='suppliers.php'>
-          </form>
-          <form class='' action='delete-suppliers.php' method='post'>
-						<input type='submit' name='submitDelete' value='Delete'>
-						<input type='hidden' name='delete' value='".$donnees['id']."'>
-						<input type='hidden' name='hiddenPage' value='suppliers.php'>
-          </form>
-        </td>
-      </tr>
     ";
+    if ($_SESSION['typeUser'] == "superadmin") {
+      echo "
+            <form class='' action='update-suppliers.php?id=". $donnees['id']."' method='post'>
+  						<input type='submit' name='submitEdit' value='Edit'>
+  						<input type='hidden' name='edit' value='".$donnees['id']."'>
+  						<input type='hidden' name='hiddenPage' value='suppliers.php'>
+            </form>
+            <form class='' action='delete-suppliers.php' method='post'>
+  						<input type='submit' name='submitDelete' value='Delete'>
+  						<input type='hidden' name='delete' value='".$donnees['id']."'>
+  						<input type='hidden' name='hiddenPage' value='suppliers.php'>
+            </form>
+          </td>
+        </tr>
+      ";
+    }
   }
 }
 

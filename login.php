@@ -1,24 +1,34 @@
 <?php
 
-require 'DBconnect.php';
+try
+{
+  $bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
+}
+catch(Exception $e)
+{
+  die('Erreur : '.$e->getMessage());
+}
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
 
   $user = $_POST['username'];
   $pwd = $_POST['password'];
+  $sPwd = sha1($pwd);
 
-  $req = $bdd->prepare("SELECT * FROM login WHERE user = '$user' AND pwd = '$pwd' ");
-  $req->execute(array($user, sha1($pwd)));
+  $req = $bdd->prepare("SELECT * FROM login WHERE user = '$user' AND pwd = '$sPwd' ");
+  $req->execute(array($user, sha1($sPwd)));
 
-  $donnees = $rep->fetch();
+  $donnees = $req->fetch();
 
-  if ($donnees['typeUser'] == 0 ) {
+  if ($donnees['typeUser'] == "moderateur" ) {
     session_start ();
-    $_SESSION['typeUser'] = 0;
+    $_SESSION['typeUser'] = "moderateur";
+    $_SESSION['nom'] = 'Mumu';
     header ('location: accueil.php');
-  } elseif ($donnees['typeUser'] == 1) {
+  } elseif ($donnees['typeUser'] == "superadmin") {
     session_start ();
-    $_SESSION['typeUser'] = 1;
+    $_SESSION['typeUser'] = "superadmin";
+    $_SESSION['nom'] = 'J.C';
     header ('location: accueil.php');
   } else {
     echo '<body onLoad="alert(\'Membre non reconnu...\')">';
@@ -28,35 +38,4 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 echo 'Les variables du formulaire ne sont pas déclarées.';
 }
 
-
-
- //-------------------------------------------------------------------------------------------------------------------------------
-
-
-//  $username_valide = "muriel";
-//  $password_valide = "perrache";
-//  $username_admin = "jc";
-//  $password_admin = "ranu";
-//
-//
-// if (isset($_POST['username']) && isset($_POST['password'])) {
-//   if ($username_valide == $_POST['username'] && $password_valide == $_POST['password']) {
-//     session_start ();
-//     $_SESSION['username'] = $_POST['username'];
-//     $_SESSION['password'] = $_POST['password'];
-//     $_SESSION['typeUser'] = 0;
-//     header ('location: accueil.php');
-//   } elseif ($username_admin == $_POST['username'] && $password_admin == $_POST['password']) {
-//     session_start ();
-//     $_SESSION['username'] = $_POST['username'];
-//     $_SESSION['password'] = $_POST['password'];
-//     $_SESSION['typeUser'] = 1;
-//     header ('location: accueil.php');
-//   } else {
-//     echo '<body onLoad="alert(\'Membre non reconnu...\')">';
-//     echo '<meta http-equiv="refresh" content="0;URL=log-in-form.php">';
-//   }
-// } else {
-// echo 'Les variables du formulaire ne sont pas déclarées.';
-// }
 ?>

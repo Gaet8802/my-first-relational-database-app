@@ -5,7 +5,7 @@
                 <img class="logo" src="COGIP.png" alt="COGIP-LOGO">
             </div>
             <div class="col-sm d-flex justify-content-center align-items-center">
-                <h1>BONJOUR ....!</h1>
+                <h1>BONJOUR <?php echo $_SESSION['nom'] ?>!</h1>
             </div>
             <div class="col-sm d-flex justify-content-end">
                 <a href="logout.php">Deconnexion</a>
