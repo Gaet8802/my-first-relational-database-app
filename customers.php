@@ -1,13 +1,6 @@
 <?php
 
-try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-  die('Erreur : '.$e->getMessage());
-}
+require 'DBconnect.php';
 
 function showCustomers($value='')
 {
@@ -70,7 +63,7 @@ function showCustomers($value='')
     <title>Société</title>
   </head>
   <body>
-		<a href="log-in-form.php">Déconnexion</a>
+		<a href="logout.php">Déconnexion</a>
 	  <a href="accueil.php">Retour à l'accueil</a>
     <h1>Company</h1>
     <h3>Company</h3>

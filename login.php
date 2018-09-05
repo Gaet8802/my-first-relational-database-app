@@ -1,4 +1,7 @@
 <?php
+
+require 'DBconnect.php';
+
 $username_valide = "muriel";
 $password_valide = "perrache";
 $username_admin = "jc";

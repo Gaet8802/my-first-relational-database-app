@@ -1,13 +1,6 @@
 <?php
 
-try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-  die('Erreur : '.$e->getMessage());
-}
+require 'DBconnect.php';
 
 function optionCompany($value='')
 {
@@ -72,7 +65,7 @@ function addFactures($value='')
 	<link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
-	<a href="log-in-form.php">Déconnexion</a>
+	<a href="logout.php">Déconnexion</a>
 	<h1>Ajout d'une facture</h1>
     <a href="accueil.php">Retour à l'accueil</a>
     <h3>Création d'une facture</h3>

@@ -1,13 +1,6 @@
 <?php
-// On démarre la session
-session_start ();
-
-// On détruit les variables de notre session
+require 'DBconnect.php';
 session_unset ();
-
-// On détruit notre session
 session_destroy ();
-
-// On redirige le visiteur vers la page d'accueil
 header ('location: log-in-form.php');
 ?>

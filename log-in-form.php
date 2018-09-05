@@ -1,3 +1,9 @@
+<?php
+
+require 'DBconnect.php';
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

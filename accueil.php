@@ -1,7 +1,6 @@
-
 <?php
 
-session_start ();
+require 'DBconnect.php';
 
 if ($_SESSION['typeUser'] == 1) {
   echo "ADMIN";

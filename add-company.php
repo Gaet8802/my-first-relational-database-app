@@ -1,13 +1,6 @@
 <?php
 
-try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-  die('Erreur : '.$e->getMessage());
-}
+require 'DBconnect.php';
 
 function addCompany($value='')
 {
@@ -31,9 +24,6 @@ function addCompany($value='')
 			'company_type' => $company_type
 		));
 
-		// $sql = $bdd->query("INSERT INTO `company` (`company_name`, `company_address`, `country`, `VAT_number`, `company_phone`, `company_type`) VALUES
-		// ('$company_name', '$company_address', '$country', '$VAT_number', '$company_phone', '$company_type')");
-
 		if ($company_type == '0') {
 			header("Location:suppliers.php");
 		} else {
@@ -54,7 +44,7 @@ function addCompany($value='')
 		<link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
 	</head>
 	<body>
-		<a href="log-in-form.php">Déconnexion</a>
+		<a href="logout.php">Déconnexion</a>
 		<h1>Ajout d'une société</h1>
 	  <a href="accueil.php">Retour à l'accueil</a>
 		<form action="" method="post">

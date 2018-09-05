@@ -1,13 +1,6 @@
 <?php
 
-try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-  die('Erreur : '.$e->getMessage());
-}
+require 'DBconnect.php';
 
 function showInvoices($value='')
 {
@@ -66,7 +59,7 @@ WHERE id_company = company.id');
     <title>Factures</title>
   </head>
   <body>
-		<a href="log-in-form.php">Déconnexion</a>
+		<a href="logout.php.php">Déconnexion</a>
 	  <a href="accueil.php">Retour à l'accueil</a>
     <h1>Factures</h1>
     <h3>Factures</h3>

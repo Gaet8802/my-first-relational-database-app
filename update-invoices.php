@@ -1,12 +1,6 @@
 <?php
-try
-{
-  $bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-  die('Erreur : '.$e->getMessage());
-}
+
+require 'DBconnect.php';
 
 $id = $_GET["id"];
 
@@ -74,7 +68,7 @@ function updateInvoices($value='')
 	<title>Modifier une facture</title>
 </head>
 <body>
-  <a href="log-in-form.php">Déconnexion</a>
+  <a href="logout.php">Déconnexion</a>
   <a href="accueil.php">Retour à l'accueil</a>
 	<h1>Modifier</h1>
 	<form action="" method="post">
