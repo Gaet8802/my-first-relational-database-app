@@ -2,6 +2,8 @@
 
 require 'DBconnect.php';
 
+echo $_SESSION["TypeUser"];
+
 function showPeople($value='')
 {
   global $bdd;

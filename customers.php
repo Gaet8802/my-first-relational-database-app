@@ -13,7 +13,6 @@ function showCustomers($value='')
      <th>Country</th>
      <th>VAT number</th>
      <th>Company phone</th>
-		 <th>Company type</th>
     </tr>
   ";
 
@@ -31,7 +30,6 @@ function showCustomers($value='')
         <td>" . $donnees['country'] . "</td>
         <td>" . $donnees['VAT_number'] . "</td>
 				<td>" . $donnees['company_phone'] . "</td>
-				<td>" . $donnees['company_type'] . "</td>
         <td>
           <form class='' action='' method='post'>
 						<input type='submit' name='submitShow' value='Show'>
