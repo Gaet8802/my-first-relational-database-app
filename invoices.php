@@ -30,19 +30,19 @@ WHERE id_company = company.id');
         <td>" . $donnees['designation'] . "</td>
         <td>
           <form class='' action='' method='post'>
-            <input type='submit' name='submitShow' value='Show'>
-						<input type='hidden' name='show' value='".$donnees['invoice_number']."'>
-						<input type='hidden' name='hiddenPage' value='invoices.php'>
+            <input type='submit' class='btn btn-warning m-1 text-white' name='submitShow' value='Show'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='show' value='".$donnees['invoice_number']."'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='invoices.php'>
 					</form>
           <form class='' action='update-invoices.php?id=". $donnees['invoice_number']."' method='post'>
-            <input type='submit' name='submitEdit' value='Edit'>
-            <input type='hidden' name='edit' value='".$donnees['invoice_number']."'>
-            <input type='hidden' name='hiddenPage' value='invoices.php'>
+            <input type='submit' class='btn btn-warning m-1 text-white' name='submitEdit' value='Edit'>
+            <input type='hidden' class='btn btn-warning m-1 text-white' name='edit' value='".$donnees['invoice_number']."'>
+            <input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='invoices.php'>
           </form>
           <form class='' action='delete-invoices.php' method='post'>
-            <input type='submit' name='submitDelete' value='Delete'>
-            <input type='hidden' name='delete' value='".$donnees['invoice_number']."'>
-            <input type='hidden' name='hiddenPage' value='invoices.php'>
+            <input type='submit' class='btn btn-warning m-1 text-white' name='submitDelete' value='Delete'>
+            <input type='hidden' class='btn btn-warning m-1 text-white' name='delete' value='".$donnees['invoice_number']."'>
+            <input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='invoices.php'>
           </form>
         </td>
       </tr>
@@ -64,10 +64,10 @@ WHERE id_company = company.id');
   </head>
   <body>
 		<?php include 'header.php' ?>
-    <form class="" action="add-factures.php" method="post">
-			<input type="submit" name="submit" value="Ajouter une facture">
+    <form class="col-sm" action="add-factures.php" method="post">
+			<input type="submit" class="btn btn-success mt-4 mb-1" name="submit" value="Ajouter une facture">
     </form>
-    <table>
+    <table class="table table-bordered">
 	  	<?php showInvoices(); ?>
     </table>
   </body>

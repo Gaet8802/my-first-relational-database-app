@@ -33,19 +33,19 @@ function showSuppliers($value='')
 				<td>" . $donnees['company_phone'] . "</td>
         <td>
           <form class='' action='' method='post'>
-						<input type='submit' name='submitShow' value='Show'>
-						<input type='hidden' name='show' value='".$donnees['id']."'>
-						<input type='hidden' name='hiddenPage' value='suppliers.php'>
+						<input type='submit' class='btn btn-warning m-1 text-white' name='submitShow' value='Show'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='show' value='".$donnees['id']."'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='suppliers.php'>
 					</form>
           <form class='' action='update-suppliers.php?id=". $donnees['id']."' method='post'>
-						<input type='submit' name='submitEdit' value='Edit'>
-						<input type='hidden' name='edit' value='".$donnees['id']."'>
-						<input type='hidden' name='hiddenPage' value='suppliers.php'>
+						<input type='submit' class='btn btn-warning m-1 text-white' name='submitEdit' value='Edit'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='edit' value='".$donnees['id']."'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='suppliers.php'>
           </form>
           <form class='' action='delete-suppliers.php' method='post'>
-						<input type='submit' name='submitDelete' value='Delete'>
-						<input type='hidden' name='delete' value='".$donnees['id']."'>
-						<input type='hidden' name='hiddenPage' value='suppliers.php'>
+						<input type='submit' class='btn btn-warning m-1 text-white' name='submitDelete' value='Delete'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='delete' value='".$donnees['id']."'>
+						<input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='suppliers.php'>
           </form>
         </td>
       </tr>
@@ -67,10 +67,10 @@ function showSuppliers($value='')
   </head>
   <body>
     <?php include 'header.php' ?>
-    <form class="" action="add-company.php" method="post">
-			<input type="submit" name="" value="Add company">
+    <form class="col-sm" action="add-company.php" method="post">
+			<input type="submit" class="btn btn-success mt-4 mb-1" name="submit" value="Ajouter un fournisseur">
     </form>
-    <table>
+    <table class="table table-bordered">
 	  	<?php showSuppliers(); ?>
     </table>
   </body>
