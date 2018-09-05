@@ -40,7 +40,7 @@ function updateAnnuaire($value='')
 	$email = $_POST["email"];
 
 	if ($company != "Choose" AND $last_name != "" AND $first_name != "" AND $phone_number != ""AND $email != "") {
-		$sql = $bdd->prepare("UPDATE Customers SET last_name = 'Paul', first_name = 'michel', phone_number = '35453575', email = 'machin@gmail.org' WHERE Customers.Customer_number = 1;");
+		$sql = $bdd->prepare("UPDATE Customers SET company = '$company', last_name = '$last_name', first_name = '$first_name', phone_number = '$phone_number', email = '$email' WHERE Customers.Customer_number = $id ");
       echo $company;
       var_dump($_POST);
     $sql->execute();
