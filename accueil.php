@@ -32,6 +32,23 @@ function afficher5factures($value='')
             <td>'.$donnees['customer_name'].'</td>
             <td>'.$donnees['invoice_date'].'</td>
             <td>'.$donnees['designation'].'</td>
+            <td>
+              <form class="" action="route_company.php" method="post">
+                <input type="submit" class="btn btn-warning m-1 text-white" name="submitShow" value="Show">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="show" value="'.$donnees['invoice_number'].'">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+              </form>
+              <form class="" action="update-customers.php" method="post">
+                <input type="submit" class="btn btn-warning m-1 text-white" name="submitEdit" value="Edit">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="edit" value="'.$donnees['invoice_number'].'">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+              </form>
+              <form class="" action="" method="post">
+                <input type="submit" class="btn btn-warning m-1 text-white" name="submitDelete" value="Delete">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="delete" value="'.$donnees['invoice_number'].'">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+              </form>
+            </td>
           </tr>
         </tbody>
     ';
@@ -66,6 +83,23 @@ function afficher5personnes($value='')
             <td>'.$donnees['first_name'].'</td>
             <td>'.$donnees['phone_number'].'</td>
             <td>'.$donnees['email'].'</td>
+            <td>
+              <form class="" action="route_company.php" method="post">
+                <input type="submit" class="btn btn-warning m-1 text-white" name="submitShow" value="Show">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="show" value="'.$donnees['id'].'">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+              </form>
+              <form class="" action="update-customers.php" method="post">
+                <input type="submit" class="btn btn-warning m-1 text-white" name="submitEdit" value="Edit">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="edit" value="'.$donnees['id'].'">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+              </form>
+              <form class="" action="" method="post">
+                <input type="submit" class="btn btn-warning m-1 text-white" name="submitDelete" value="Delete">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="delete" value="'.$donnees['id'].'">
+                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+              </form>
+            </td>
           </tr>
         </tbody>
     ';
