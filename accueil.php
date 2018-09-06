@@ -16,22 +16,22 @@ require 'DBconnect.php';
   </head>
   <body>
     <?php include 'header.php' ?>
- 
+
 	<?php
 	try
 	{
 		// On se connecte à MySQL
-		$bdd = new PDO('mysql:host=localhost;dbname=id7027355_cogip;charset=utf8', 'id7027355_tanolepro','tanolepro');
+    $bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
 	}
 	catch(Exception $e)
 	{
 		// En cas d'erreur, on affiche un message et on arrête tout
 	        die('Erreur : '.$e->getMessage());
 	}
-	
+
 	$resultat = $bdd->query('SELECT Company.company_name,Invoices.customer_name,Invoices.invoice_date,Invoices.designation
 							from Company,Invoices
-							where Invoices.id_company = Company.id 
+							where Invoices.id_company = Company.id
 							ORDER BY invoice_date ASC LIMIT 5');
 	?>
 
@@ -45,7 +45,7 @@ require 'DBconnect.php';
 	            <th scope="col">Motifs</th>
 	        </tr>
 	    </thead>
-	<?php    
+	<?php
 	while ($donnees= $resultat->fetch()){
 	    echo
 	        '<tbody>
@@ -69,12 +69,12 @@ require 'DBconnect.php';
 	            <th scope="col">E-mail</th>
 	        </tr>
 	    </thead>
-	<?php        
-	
+	<?php
+
 	$resultat = $bdd->query('SELECT * FROM customers ORDER BY Customer_number DESC LIMIT 5');
-	
+
 	while ($donnees= $resultat->fetch()){
-	    echo 
+	    echo
 	    '<tbody>
 	        <tr>
 	            <td>'.$donnees['last_name'].'</td>
@@ -100,13 +100,13 @@ require 'DBconnect.php';
 	        </tr>
 	    </thead>
 	<?php
-	
+
 	$resultat = $bdd->prepare('select Company.id,Company.company_name,Company.company_address,Company.country,Company.VAT_number,Company.company_phone,Company_Type.type_name
 	from Company,Company_Type where Company.company_type = company_Type.id order by Company.id desc limit 5');
 	$resultat -> execute();
-	
+
 	foreach($resultat as $donnees){
-	    
+
 	    echo '<tbody>
 	            <tr>
 	                <td>

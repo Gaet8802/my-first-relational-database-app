@@ -2,7 +2,7 @@
 
 try
 {
-  $bdd = new PDO('mysql:host=localhost;dbname=id7027355_cogip;charset=utf8', 'id7027355_tanolepro', 'tanolepro');
+  $bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
 }
 catch(Exception $e)
 {
@@ -32,7 +32,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     header ('location: accueil.php');
   } else {
     echo '<body onLoad="alert(\'Membre non reconnu...\')">';
-    echo '<meta http-equiv="refresh" content="0;URL=log-in-form.php">';
+    echo '<meta http-equiv="refresh" content="0;URL=index.php">';
   }
 } else {
 echo 'Les variables du formulaire ne sont pas déclarées.';

@@ -17,7 +17,7 @@ include 'header.php';
 try
 {
 	// On se connecte à MySQL
-	$bdd = new PDO('mysql:host=localhost;dbname=id7027355_cogip;charset=utf8', 'id7027355_tanolepro','tanolepro');
+	$bdd = new PDO('mysql:host=localhost;dbname=cogip;charset=utf8', 'root', '');
 }
 catch(Exception $e)
 {
@@ -35,7 +35,7 @@ $reponse->bindValue(':id',$id);
 $reponse->execute();
 
 foreach($reponse->fetchAll() as $key => $donnees){
-	echo 
+	echo
 	'<table>
             <tr>
                 <td>'.$donnees['company_name'].'
@@ -71,7 +71,7 @@ $reponse->execute();
 
 foreach($reponse->fetchAll() as $key => $donnees){
 	//print_r($donnees);
-    
+
 	echo '<table>
             <tr>
                 <td>'.$donnees['company_name'].'
