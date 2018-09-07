@@ -4,56 +4,58 @@ require 'DBconnect.php';
 
 function afficher5factures($value='')
 {
-  global $bdd;
+    global $bdd;
 
-  $resultat = $bdd->query('SELECT Company.company_name,Invoices.customer_name,Invoices.invoice_date,Invoices.designation
-              from Company,Invoices
-              where Invoices.id_company = Company.id
-              ORDER BY invoice_date ASC LIMIT 5');
+    $resultat = $bdd->query('SELECT *
+                from Company,Invoices
+                where Invoices.id_company = Company.id
+                ORDER BY invoice_date ASC LIMIT 5');
 
-  echo "
-    <h1 class='mt-2 d-flex justify-content-center display-4'>vos cinq dernières factures</h1>
-    <table class='table table-bordered mt-4'>
-        <thead>
-            <tr>
-                <th scope='col'>Nom de l'entreprise</th>
-                <th scope='col'>Nom du client</th>
-                <th scope='col'>Date de la facture</th>
-                <th scope='col'>Motifs</th>
-            </tr>
-        </thead>
-  ";
+    echo "
+      <h1 class='mt-2 d-flex justify-content-center display-4'>vos cinq dernières factures</h1>
+      <table class='table table-bordered mt-4'>
+              <tr>
+                  <th scope='col'>Nom de l'entreprise</th>
+                  <th scope='col'>Nom du client</th>
+                  <th scope='col'>Date de la facture</th>
+                  <th scope='col'>Motifs</th>
+              </tr>
+    ";
 
-  while ($donnees= $resultat->fetch()){
-    echo'
-        <tbody>
+    while ($donnees= $resultat->fetch()){
+      echo"
           <tr>
-            <td>'.$donnees['company_name'].'</td>
-            <td>'.$donnees['customer_name'].'</td>
-            <td>'.$donnees['invoice_date'].'</td>
-            <td>'.$donnees['designation'].'</td>
+            <td>" . $donnees['company_name'] . "</td>
+            <td>" . $donnees['customer_name'] . "</td>
+            <td>" . $donnees['invoice_date'] . "</td>
+            <td>" . $donnees['designation'] . "</td>
             <td>
-              <form class="" action="route_company.php" method="post">
-                <input type="submit" class="btn btn-warning m-1 text-white" name="submitShow" value="Show">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="show" value="'.$donnees['invoice_number'].'">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+              <form class='' action='' method='post'>
+                <input type='submit' class='btn btn-warning m-1 text-white' name='submitShow' value='Show'>
+                <input type='hidden' class='btn btn-warning m-1 text-white' name='show' value='".$donnees['invoice_number']."'>
+                <input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='accueil.php'>
               </form>
-              <form class="" action="update-customers.php" method="post">
-                <input type="submit" class="btn btn-warning m-1 text-white" name="submitEdit" value="Edit">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="edit" value="'.$donnees['invoice_number'].'">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
-              </form>
-              <form class="" action="" method="post">
-                <input type="submit" class="btn btn-warning m-1 text-white" name="submitDelete" value="Delete">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="delete" value="'.$donnees['invoice_number'].'">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
-              </form>
-            </td>
-          </tr>
-        </tbody>
-    ';
+        ";
+        if ($_SESSION['typeUser'] == "superadmin") {
+          echo "
+                <form class='' action='update-invoices.php?id=". $donnees['invoice_number']."' method='post'>
+                  <input type='submit' class='btn btn-warning m-1 text-white name='submitEdit' value='Edit'>
+                  <input type='hidden' name='edit' value='".$donnees['invoice_number']."'>
+                  <input type='hidden' name='hiddenPage' value='accueil.php'>
+                </form>
+                <form class='' action='delete-invoices.php' method='post'>
+                  <input type='submit' class='btn btn-warning m-1 text-white name='submitDelete' value='Delete'>
+                  <input type='hidden' name='delete' value='".$donnees['invoice_number']."'>
+                  <input type='hidden' name='hiddenPage' value='accueil.php'>
+                </form>
+              </td>
+            </tr>
+      ";
+    }
   }
-  echo "</table>";
+  echo "
+  </table>
+  ";
 }
 
 function afficher5personnes($value='')
@@ -65,60 +67,62 @@ function afficher5personnes($value='')
   echo "
     <h1 class='mt-2 d-flex justify-content-center display-4'>cinq dernières personnes encodées</h1>
     <table class='table table-bordered'>
-        <thead>
             <tr>
                 <th scope='col'>Nom</th>
                 <th scope='col'>Prénom</th>
                 <th scope='col'>Numéro de téléphone</th>
                 <th scope='col'>E-mail</th>
             </tr>
-        </thead>
   ";
 
   while ($donnees= $resultat->fetch()){
-    echo'
-        <tbody>
-          <tr>
-            <td>'.$donnees['last_name'].'</td>
-            <td>'.$donnees['first_name'].'</td>
-            <td>'.$donnees['phone_number'].'</td>
-            <td>'.$donnees['email'].'</td>
-            <td>
-              <form class="" action="route_company.php" method="post">
-                <input type="submit" class="btn btn-warning m-1 text-white" name="submitShow" value="Show">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="show" value="'.$donnees['id'].'">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+    echo"
+        <tr>
+          <td>" . $donnees['company'] . "</td>
+          <td>" . $donnees['last_name'] . "</td>
+          <td>" . $donnees['first_name'] . "</td>
+          <td>" . $donnees['phone_number'] . "</td>
+          <td>" . $donnees['email'] . "</td>
+          <td>
+            <form class='' action='' method='post'>
+              <input type='submit' class='btn btn-warning m-1 text-white' name='submitShow' value='Show'>
+              <input type='hidden'  name='show' value='".$donnees['Customer_number']."'>
+              <input type='hidden'  name='hiddenPage' value='accueil.php'>
+            </form>
+      ";
+      if ($_SESSION['typeUser'] == "superadmin") {
+        echo "
+              <form class='' action='update-annuaire.php?id=". $donnees['Customer_number']."' method='post'>
+                <input type='submit' class='btn btn-warning m-1 text-white name='submitEdit' value='Edit'>
+                <input type='hidden' name='edit' value='".$donnees['Customer_number']."'>
+                <input type='hidden' name='hiddenPage' value='accueil.php'>
               </form>
-              <form class="" action="update-customers.php" method="post">
-                <input type="submit" class="btn btn-warning m-1 text-white" name="submitEdit" value="Edit">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="edit" value="'.$donnees['id'].'">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
-              </form>
-              <form class="" action="" method="post">
-                <input type="submit" class="btn btn-warning m-1 text-white" name="submitDelete" value="Delete">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="delete" value="'.$donnees['id'].'">
-                <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+              <form class='' action='delete-annuaire.php' method='post'>
+                <input type='submit' class='btn btn-warning m-1 text-white name='submitDelete' value='Delete'>
+                <input type='hidden' name='delete' value='".$donnees['Customer_number']."'>
+                <input type='hidden' name='hiddenPage' value='accueil.php'>
               </form>
             </td>
           </tr>
-        </tbody>
-    ';
+    ";
   }
-  echo "</table>";
+}
+echo "
+</table>
+";
 }
 
 function afficher5societes($value='')
 {
   global $bdd;
 
-  $resultat = $bdd->prepare('select Company.id,Company.company_name,Company.company_address,Company.country,Company.VAT_number,Company.company_phone,Company_Type.type_name
+  $resultat = $bdd->prepare('SELECT Company.id,Company.company_name,Company.company_address,Company.country,Company.VAT_number,Company.company_phone,Company_Type.type_name
   from Company,Company_Type where Company.company_type = company_Type.id order by Company.id desc limit 5');
   $resultat -> execute();
 
   echo "
   <h1 class='mt-2 d-flex justify-content-center display-4'>cinq dernières sociétés encodées</h1>
   <table class='table table-bordered'>
-    <thead>
         <tr>
             <th scope='col'>Nom de l'entreprise</th>
             <th scope='col'>Adresse de l'entreprise</th>
@@ -128,49 +132,42 @@ function afficher5societes($value='')
             <th scope='col'>Type de client</th>
             <th scope='col'>Options</th>
         </tr>
-    </thead>
   ";
   foreach($resultat as $donnees){
-    echo '
-      <tbody>
+    echo "
         <tr>
+          <td>" . $donnees['company_name'] . "</td>
+          <td>" . $donnees['company_address'] . "</td>
+          <td>" . $donnees['country'] . "</td>
+          <td>" . $donnees['VAT_number'] . "</td>
+          <td>" . $donnees['company_phone'] . "</td>
           <td>
-            '.$donnees['company_name'].'
-          </td>
-          <td>'
-            .$donnees['company_address'].
-          '</td>
-          <td>'
-            .$donnees['country'].
-          '</td>
-          <td>'.$donnees['VAT_number'].
-          '</td>
-          <td>'.$donnees['company_phone'].
-          '</td>
-          <td>'.$donnees['type_name'].
-          '</td>
-          <td>
-            <form class="" action="route_company.php" method="post">
-              <input type="submit" class="btn btn-warning m-1 text-white" name="submitShow" value="Show">
-              <input type="hidden" class="btn btn-warning m-1 text-white" name="show" value="'.$donnees['id'].'">
-              <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+            <form class='' action='' method='post'>
+              <input type='submit' class='btn btn-warning m-1 text-white' name='submitShow' value='Show'>
+              <input type='hidden' class='btn btn-warning m-1 text-white' name='show' value='".$donnees['id']."'>
+              <input type='hidden' class='btn btn-warning m-1 text-white' name='hiddenPage' value='accueil.php'>
             </form>
-            <form class="" action="update-customers.php" method="post">
-              <input type="submit" class="btn btn-warning m-1 text-white" name="submitEdit" value="Edit">
-              <input type="hidden" class="btn btn-warning m-1 text-white" name="edit" value="'.$donnees['id'].'">
-              <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+      ";
+      if ($_SESSION['typeUser'] == "superadmin") {
+        echo "
+            <form class='' action='update-customers.php?id=". $donnees['id']."' method='post'>
+              <input type='submit' class='btn btn-warning m-1 text-white name='submitEdit' value='Edit'>
+              <input type='hidden' name='edit' value='".$donnees['id']."'>
+              <input type='hidden' name='hiddenPage' value='accueil.php'>
             </form>
-            <form class="" action="" method="post">
-              <input type="submit" class="btn btn-warning m-1 text-white" name="submitDelete" value="Delete">
-              <input type="hidden" class="btn btn-warning m-1 text-white" name="delete" value="'.$donnees['id'].'">
-              <input type="hidden" class="btn btn-warning m-1 text-white" name="hiddenPage" value="accueil.php">
+            <form class='' action='delete-customers.php' method='post'>
+              <input type='submit' class='btn btn-warning m-1 text-white name='submitDelete' value='Delete'>
+              <input type='hidden' name='delete' value='".$donnees['id']."'>
+              <input type='hidden' name='hiddenPage' value='accueil.php'>
             </form>
           </td>
         </tr>
-      </tbody>
-    ';
+    ";
   }
-  echo "</table>";
+}
+echo "
+</table>
+";
 }
 
 ?>
@@ -190,3 +187,4 @@ function afficher5societes($value='')
       <?php afficher5personnes(); ?>
       <?php afficher5societes(); ?>
     </body>
+  </html>
